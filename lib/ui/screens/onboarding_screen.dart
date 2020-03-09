@@ -162,8 +162,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               Center(
                                 child: SvgPicture.asset(
                                   'assets/images/contactsAroundMan_illustration_colored.svg',
-                                  placeholderBuilder: (context) =>
-                                      CircularProgressIndicator(),
                                   height: 280.0,
                                   width: 280.0,
                                 ),
@@ -186,12 +184,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 style: sctTitleStyleLarge_w,
                                 textAlign: TextAlign.left,
                               ),
-                              SizedBox(height: 70.0),
+                              SizedBox(height: 20.0),
                               Center(
                                 child: SvgPicture.asset(
                                   'assets/images/invoicesBehindWoman_illustration_colored.svg',
-                                  placeholderBuilder: (context) =>
-                                      CircularProgressIndicator(),
                                   height: 280.0,
                                   width: 280.0,
                                 ),
@@ -216,7 +212,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               ),
                               Column(
                                 children: <Widget>[
-                                  SizedBox(height: 80.0),
+                                  SizedBox(height: 60.0),
                                   Row(
                                     children: <Widget>[
                                       Icon(
