@@ -1,53 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:sct_mobile/ui/screens/onboarding_screen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(new MaterialApp(
+    home: new SCT(),
+  ));
+}
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+//class SCT extends StatefulWidget {
+////  @override
+////  _MyAppState createState() => new _MyAppState();
+////}
+
+class SCT extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+
+//    return Provider<AuthenticationProvider>(
+//        builder: (_) => AuthenticationProvider(),
+//    dispose: (_, model) => model.dispose(),
+//    child: Consumer<AuthenticationProvider>(
+//    builder: (_, AuthenticationProvider authenticationProvider, __) {
+//    return MultiProvider(
+//    providers: <SingleChildCloneableWidget>[
+//    Provider<ChatProvider>(
+//    builder: (_) => ChatProvider(authenticationProvider: authenticationProvider),
+//    dispose: (_, ChatProvider provider) => provider.dispose(),
+//    ),
+//    Provider<ResourcesProvider>(
+//    builder: (_) => ResourcesProvider(authenticationProvider: authenticationProvider),
+//    dispose: (_, ResourcesProvider provider) => provider.dispose(),
+//    ),
+//    ],
+
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'SCT App',
       theme: ThemeData(
-        primaryColor: Color(0xfff7c91e),
-        accentColor: Color(0xfff7c91e),
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+          // TODO: Create a theme for the app, to easily use different styles
+          ),
+      home: OnboardingScreen(),
+      // TODO: Make the Onboarding screen appear only once after installation
     );
   }
 }
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
+//class _MyAppState extends State<SCT> {
+//  @override
+//  Widget build(BuildContext context) {
+//    return MaterialApp(
+//      title: 'Onboarding',
+//      debugShowCheckedModeBanner: false,
+//      home: OnboardingScreen(),
+//    );
+//  }
+//}
