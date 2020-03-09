@@ -1,0 +1,113 @@
+import 'package:flutter/material.dart';
+import 'package:sct_mobile/core/utils/styles.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:camera/camera.dart';
+
+Future<void> main() async {
+  // Ensure that plugin services are initialized so that `availableCameras()`
+  // can be called before `runApp()`
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Obtain a list of the available cameras on the device.
+  final cameras = await availableCameras();
+
+  // Get a specific camera from the list of available cameras.
+  final firstCamera = cameras.first;
+
+  runApp(
+    MaterialApp(
+      theme: ThemeData.dark(),
+      home: Home(
+        // Pass the appropriate camera to the TakePictureScreen widget.
+        camera: firstCamera,
+      ),
+    ),
+  );
+}
+
+class Home extends StatefulWidget {
+  final CameraDescription camera;
+
+  const Home({
+    Key key,
+    @required this.camera,
+  }) : super(key: key);
+
+  @override
+  _Home createState() => _Home();
+}
+
+class _Home extends State<Home> {
+  CameraController _cameraController;
+  Future<void> _initializeControllerFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    // To display the current output from the camera,
+    // create a CameraController.
+    _cameraController = CameraController(
+      // Get a specific camera from the list of available cameras.
+      widget.camera,
+      // Define the resolution to use.
+      ResolutionPreset.medium,
+    );
+
+    // Next, initialize the controller. This returns a Future.
+    _initializeControllerFuture = _cameraController.initialize();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Welcome to SCT',
+      home: Scaffold(
+        backgroundColor: Color(0xfff7c91e),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SvgPicture.asset(
+                  'assets/images/sct_logo_colored_squaredWithoutBackgroundAndSubtitle.svg'),
+              SizedBox(height: 30.0),
+              Text(
+                'Veuillez scanner le QR code de votre instance',
+                style: sctText,
+              ),
+              SizedBox(height: 30.0),
+              SizedBox(
+                height: 250.0,
+                width: 250.0,
+                child: const DecoratedBox(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(height: 30.0),
+              RaisedButton(
+                onPressed: () {},
+                textColor: Colors.white,
+                color: Color(0xff2f3e55),
+                padding: const EdgeInsets.all(10.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(25.0),
+                    topLeft: Radius.circular(25.0),
+                    bottomRight: Radius.circular(25.0),
+                    bottomLeft: Radius.circular(25.0),
+                  ),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.all(3.0),
+                  child: const Text("Saisir l'URL manuellement",
+                      style: TextStyle(fontSize: 17)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
