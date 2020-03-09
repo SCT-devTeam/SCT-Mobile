@@ -166,7 +166,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   width: 280.0,
                                 ),
                               ),
-                              SizedBox(height: 40.0),
+                              SizedBox(height: 55.0),
                               Text(
                                 'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
                                 style: sctSubtitleStyleMed_b,
