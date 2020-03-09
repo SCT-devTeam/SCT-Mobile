@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sct_mobile/core/utils/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sct_mobile/ui/screens/home.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -13,7 +14,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
   Animatable<Color> _background;
-  Animatable<Color> _textColor;
 
   @override
   void initState() {
@@ -22,29 +22,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _initialize() {
-    _textColor = TweenSequence<Color>([
-      TweenSequenceItem(
-        weight: 1.0,
-        tween: ColorTween(
-          begin: Colors.white,
-          end: Colors.black,
-        ),
-      ),
-      TweenSequenceItem(
-        weight: 1.0,
-        tween: ColorTween(
-          begin: Colors.black,
-          end: Colors.black,
-        ),
-      ),
-      TweenSequenceItem(
-        weight: 1.0,
-        tween: ColorTween(
-          begin: Colors.black,
-          end: Colors.black,
-        ),
-      ),
-    ]);
     _background = TweenSequence<Color>([
       TweenSequenceItem(
         weight: 1.0,
@@ -324,8 +301,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               width: double.infinity,
               color: Colors.white,
               child: GestureDetector(
-                onTap: () => print('Get started'),
-                // TODO: Show main menu of the app
+                onTap: () {
+                  Navigator.of(context).pushReplacement(
+                      new MaterialPageRoute(builder: (context) => new Home()));
+                },
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 30.0),

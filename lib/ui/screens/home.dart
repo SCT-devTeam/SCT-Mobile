@@ -3,59 +3,71 @@ import 'package:sct_mobile/core/utils/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:camera/camera.dart';
 
-Future<void> main() async {
-  // Ensure that plugin services are initialized so that `availableCameras()`
-  // can be called before `runApp()`
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Obtain a list of the available cameras on the device.
-  final cameras = await availableCameras();
-
-  // Get a specific camera from the list of available cameras.
-  final firstCamera = cameras.first;
-
+main() {
   runApp(
     MaterialApp(
       theme: ThemeData.dark(),
       home: Home(
-        // Pass the appropriate camera to the TakePictureScreen widget.
-        camera: firstCamera,
-      ),
+          // Pass the appropriate camera to the TakePictureScreen widget.
+//        camera: firstCamera,
+          ),
     ),
   );
 }
 
-class Home extends StatefulWidget {
-  final CameraDescription camera;
+//Future<void> main() async {
+//  // Ensure that plugin services are initialized so that `availableCameras()`
+//  // can be called before `runApp()`
+//  WidgetsFlutterBinding.ensureInitialized();
+//
+//  // Obtain a list of the available cameras on the device.
+//  final cameras = await availableCameras();
+//
+//  // Get a specific camera from the list of available cameras.
+//  final firstCamera = cameras.first;
+//
+//  runApp(
+//    MaterialApp(
+//      theme: ThemeData.dark(),
+//      home: Home(
+//          // Pass the appropriate camera to the TakePictureScreen widget.
+////        camera: firstCamera,
+//          ),
+//    ),
+//  );
+//}
 
-  const Home({
-    Key key,
-    @required this.camera,
-  }) : super(key: key);
+//class Home extends StatefulWidget {
+//  final CameraDescription camera;
+//
+//  const Home({
+//    Key key,
+//    @required this.camera,
+//  }) : super(key: key);
+//
+//  @override
+//  _Home createState() => _Home();
+//}
 
-  @override
-  _Home createState() => _Home();
-}
-
-class _Home extends State<Home> {
+class Home extends StatelessWidget {
   CameraController _cameraController;
   Future<void> _initializeControllerFuture;
 
-  @override
-  void initState() {
-    super.initState();
-    // To display the current output from the camera,
-    // create a CameraController.
-    _cameraController = CameraController(
-      // Get a specific camera from the list of available cameras.
-      widget.camera,
-      // Define the resolution to use.
-      ResolutionPreset.medium,
-    );
-
-    // Next, initialize the controller. This returns a Future.
-    _initializeControllerFuture = _cameraController.initialize();
-  }
+//  @override
+//  void initState() {
+//    super.initState();
+//    // To display the current output from the camera,
+//    // create a CameraController.
+//    _cameraController = CameraController(
+//      // Get a specific camera from the list of available cameras.
+//      widget.camera,
+//      // Define the resolution to use.
+//      ResolutionPreset.medium,
+//    );
+//
+//    // Next, initialize the controller. This returns a Future.
+//    _initializeControllerFuture = _cameraController.initialize();
+//  }
 
   @override
   Widget build(BuildContext context) {
