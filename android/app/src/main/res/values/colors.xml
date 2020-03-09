@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Fingerprint colors -->
+    <color name="main">#F7C91E</color>
+    <color name="secondary">#4F1EF7</color>
+    <color name="secondary2">#2F3E55</color>
+    <color name="active">#1E1EF7</color>
+    <color name="text">#1A1A1A</color>
+    <color name="subtitle">#505050</color>
+    <color name="validationOK">#34F71E</color>
+    <color name="validationNO">#F71E1E</color>
+</resources>
+
+<!--    ## HEXA ##-->
+<!--    #F7C91E : Main - Ripe Lemon - Background-->
+<!--    #4F1EF7 : Secondary - Illustration background - Electric Violet-->
+<!--    #2F3E55 : Secondary - Actions & Icons - Pickled Bluewood-->
+<!--    #1E1EF7 : Active - Dark Blue-->
+<!--    #1A1A1A : Text - Cod Gray-->
+<!--    #505050 : Subtitle - Inactive & Separator - Dove Gray-->
+<!--    #34F71E : Validation OK - Harlequin-->
+<!--    #F71E1E : Validation NO - Torch Red-->
