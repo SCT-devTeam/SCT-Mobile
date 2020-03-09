@@ -6,18 +6,17 @@ import 'package:flutter/material.dart';
 final sctTitleStyleLarge_b = TextStyle(
   color: Color(0xff1a1a1a),
   fontFamily: 'Roboto',
-  fontSize: 45.0,
+  fontSize: 50.0,
   height: 1.5,
-  fontWeight: FontWeight.bold,
+//  fontWeight: FontWeight.bold,
 );
 
 // HEADER LARGE WHITE
 final sctTitleStyleLarge_w = TextStyle(
   color: Colors.white,
   fontFamily: 'Roboto',
-  fontSize: 45.0,
+  fontSize: 50.0,
   height: 1.5,
-  fontWeight: FontWeight.bold,
 );
 
 // HEADER MEDIUM BLACK
@@ -26,7 +25,6 @@ final sctTitleStyleMed_b = TextStyle(
   fontFamily: 'Roboto',
   fontSize: 35.0,
   height: 1.5,
-  fontWeight: FontWeight.bold,
 );
 
 // HEADER MEDIUM WHITE
@@ -35,7 +33,6 @@ final sctTitleStyleMed_w = TextStyle(
   fontFamily: 'Roboto',
   fontSize: 35.0,
   height: 1.5,
-  fontWeight: FontWeight.bold,
 );
 
 // TEXT

@@ -149,14 +149,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       },
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.all(20.0),
+                          padding: EdgeInsets.all(5.0),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Gérez vos client',
+                                'Gérez vos\nclients',
                                 style: sctTitleStyleLarge_b,
-                                textAlign: TextAlign.left,
+                                textAlign: TextAlign.center,
                               ),
                               SizedBox(height: 70.0),
                               Center(
@@ -166,36 +165,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   width: 280.0,
                                 ),
                               ),
-                              SizedBox(height: 55.0),
-                              Text(
-                                'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
-                                style: sctSubtitleStyleMed_b,
-                              ),
                             ],
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.all(20.0),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Gérez vos factures',
+                                'Gérez vos\nfactures',
                                 style: sctTitleStyleLarge_w,
-                                textAlign: TextAlign.left,
+                                textAlign: TextAlign.center,
                               ),
-                              SizedBox(height: 20.0),
+                              SizedBox(height: 70.0),
                               Center(
                                 child: SvgPicture.asset(
                                   'assets/images/invoicesBehindWoman_illustration_colored.svg',
                                   height: 280.0,
                                   width: 280.0,
                                 ),
-                              ),
-                              SizedBox(height: 40.0),
-                              Text(
-                                'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
-                                style: sctSubtitleStyleMed_w,
                               ),
                             ],
                           ),
@@ -284,6 +272,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ],
                     ),
                   ),
+                  SizedBox(width: 50.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: _buildPageIndicator(),
