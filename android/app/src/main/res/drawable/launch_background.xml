@@ -3,9 +3,12 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/main" />
 
-    <item>
+    <item
+        android:height="171dp"
+        android:width="200dp"
+        android:gravity="center">
         <bitmap
-            android:gravity="center"
+            android:gravity="fill_vertical|fill_horizontal"
             android:src="@drawable/sct_logo" />
     </item>
 </layer-list>
