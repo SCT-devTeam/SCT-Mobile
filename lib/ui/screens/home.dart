@@ -73,50 +73,58 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Welcome to SCT',
-      home: Scaffold(
-        backgroundColor: Color(0xfff7c91e),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SvgPicture.asset(
-                  'assets/images/sct_logo_colored_squaredWithoutBackgroundAndSubtitle.svg'),
-              SizedBox(height: 30.0),
-              Text(
-                'Veuillez scanner le QR code de votre instance',
-                style: sctText,
-              ),
-              SizedBox(height: 30.0),
-              SizedBox(
-                height: 250.0,
-                width: 250.0,
-                child: const DecoratedBox(
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
+      home: Center(
+        child: Scaffold(
+          backgroundColor: Color(0xfff7c91e),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SvgPicture.asset(
+                    'assets/images/sct_logo_colored_squaredWithoutBackgroundAndSubtitle.svg'),
+                SizedBox(height: 30.0),
+                Container(
+                  child: Text(
+                    "L'application à besoin de se connecter à une instance de SCT² pour fonctionner",
+                    style: sctText,
+                  ),
+                  padding: const EdgeInsets.all(20.0),
+                ),
+                SizedBox(height: 30.0),
+                SizedBox(
+                  height: 250.0,
+                  width: 250.0,
+                  child: const DecoratedBox(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 30.0),
-              RaisedButton(
-                onPressed: () {},
-                textColor: Colors.white,
-                color: Color(0xff2f3e55),
-                padding: const EdgeInsets.all(10.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(25.0),
-                    topLeft: Radius.circular(25.0),
-                    bottomRight: Radius.circular(25.0),
-                    bottomLeft: Radius.circular(25.0),
+                SizedBox(height: 30.0),
+                RaisedButton(
+                  onPressed: () {},
+                  textColor: Colors.white,
+                  color: Color(0xff2f3e55),
+                  padding: const EdgeInsets.all(10.0),
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(25.0),
+                      topLeft: Radius.circular(25.0),
+                      bottomRight: Radius.circular(25.0),
+                      bottomLeft: Radius.circular(25.0),
+                    ),
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.all(3.0),
+                    child: const Text("Saisir l'URL manuellement",
+                        style: TextStyle(fontSize: 17)),
                   ),
                 ),
-                child: Container(
-                  padding: const EdgeInsets.all(3.0),
-                  child: const Text("Saisir l'URL manuellement",
-                      style: TextStyle(fontSize: 17)),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

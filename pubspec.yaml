@@ -49,6 +49,7 @@ flutter:
   assets:
       - assets/images/contactsAroundMan_illustration_colored.svg
       - assets/images/invoicesBehindWoman_illustration_colored.svg
+      - assets/images/sct_logo_colored_squaredWithoutBackgroundAndSubtitle.svg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
