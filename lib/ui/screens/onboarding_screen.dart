@@ -99,21 +99,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Container(
-                    alignment: Alignment.centerRight,
-                    child: FlatButton(
-                      // TODO: Make skip button disappear on the third page
-                      // TODO: Make skip button change color to white on the second page
-                      onPressed: () => print('Skip'),
-                      child: Text(
-                        'Skip',
-                        style: TextStyle(
-                          color: Color(0xff1a1a1a),
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ),
-                  ),
+                  // TODO: Make skip button redirect to the home and disappear on the third page
+//                  Container(
+//                    alignment: Alignment.centerRight,
+//                    child: FlatButton(
+//                      onPressed: () => print('Skip'),
+//                      child: Text(
+//                        'Skip',
+//                        style: TextStyle(
+//                          color: Color(0xff1a1a1a),
+//                          fontSize: 20.0,
+//                        ),
+//                      ),
+//                    ),
+//                  ),
                   Container(
                     height: 600.0,
                     child: PageView(

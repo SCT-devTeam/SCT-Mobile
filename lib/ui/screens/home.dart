@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sct_mobile/core/utils/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:camera/camera.dart';
+//import 'package:camera/camera.dart';
 import 'package:sct_mobile/ui/widgets/simplebutton.dart';
 
 main() {
@@ -51,7 +51,7 @@ main() {
 //}
 
 class Home extends StatelessWidget {
-  CameraController _cameraController;
+//  CameraController _cameraController;
   Future<void> _initializeControllerFuture;
 
 //  @override
