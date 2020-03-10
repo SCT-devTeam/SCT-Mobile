@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sct_mobile/core/utils/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:camera/camera.dart';
+import 'package:sct_mobile/ui/widgets/simplebutton.dart';
 
 main() {
   runApp(
@@ -91,37 +92,23 @@ class Home extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                 ),
                 SizedBox(height: 30.0),
-                SizedBox(
-                  height: 250.0,
-                  width: 250.0,
-                  child: const DecoratedBox(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+//                SizedBox(
+//                  height: 250.0,
+//                  width: 250.0,
+//                  child: const DecoratedBox(
+//                    decoration: const BoxDecoration(
+//                      color: Colors.white,
+//                    ),
+//                  ),
+//                ),
                 SizedBox(height: 30.0),
-                RaisedButton(
-                  onPressed: () {},
-                  textColor: Colors.white,
-                  color: Color(0xff2f3e55),
-                  padding: const EdgeInsets.all(10.0),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: Colors.white,
-                    ),
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(25.0),
-                      topLeft: Radius.circular(25.0),
-                      bottomRight: Radius.circular(25.0),
-                      bottomLeft: Radius.circular(25.0),
-                    ),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.all(3.0),
-                    child: const Text("Saisir l'URL manuellement",
-                        style: TextStyle(fontSize: 17)),
-                  ),
+                SimpleButton(
+                  title: Text("Je n'ai pas d'instance",
+                      style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 17)),
+                  onPressed: () => print("Hello"),
                 ),
               ],
             ),
