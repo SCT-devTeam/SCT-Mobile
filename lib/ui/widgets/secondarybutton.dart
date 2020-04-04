@@ -1,31 +1,33 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class SimpleButton extends StatefulWidget {
-  SimpleButton({@required this.onPressed, this.title});
+class SecondaryButton extends StatefulWidget {
+  SecondaryButton({@required this.onPressed, this.title});
   final GestureTapCallback onPressed;
   final Widget title;
 
   @override
-  _SimpleButtonState createState() => _SimpleButtonState();
+  _SecondaryButtonState createState() => _SecondaryButtonState();
 }
 
-class _SimpleButtonState extends State<SimpleButton> {
+class _SecondaryButtonState extends State<SecondaryButton> {
   bool _isPressed = false;
 
-  void handleTap() {
-    setState(() {
-      _isPressed = true;
+//  GestureTapCallback handleTap(GestureTapCallback onPressed) {
+//    setState(() {
+//      _isPressed = !_isPressed;
+//
+//      Future.delayed(const Duration(milliseconds: 100))
+//          .then((value) => _isPressed = false);
+//    });
 
-      Future.delayed(const Duration(milliseconds: 1500))
-          .then((value) => _isPressed = false);
-    });
-  }
+//    return onPressed;
+//  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(30.0),
+      margin: EdgeInsets.all(5.0),
       decoration: ShapeDecoration(
         shape: StadiumBorder(),
         shadows: [
@@ -37,12 +39,12 @@ class _SimpleButtonState extends State<SimpleButton> {
           )
         ],
       ),
-      child: FlatButton(
-        onPressed: () => handleTap(),
+      child: RaisedButton(
+        onPressed: widget.onPressed,
         textColor: Colors.white,
         hoverColor: Color(0xff1e1ef7),
-        color: (_isPressed ? Colors.blue : Color(0xff2f3e55)),
-//        color: Color(0xff2f3e55),
+//        color: (_isPressed ? Colors.blue : Color(0xff4f1ef7)),
+        color: Color(0xff4f1ef7),
         padding: const EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
           side: BorderSide(
