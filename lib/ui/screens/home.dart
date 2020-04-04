@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sct_mobile/core/utils/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sct_mobile/ui/screens/onboarding_screen.dart';
+import 'package:sct_mobile/ui/screens/scanner.dart';
 //import 'package:camera/camera.dart';
-import 'package:sct_mobile/ui/widgets/simplebutton.dart';
+import 'package:sct_mobile/ui/widgets/primarybutton.dart';
+import 'package:sct_mobile/ui/widgets/secondarybutton.dart';
+import 'package:sct_mobile/ui/screens/login.dart';
 
 main() {
   runApp(
@@ -88,6 +92,7 @@ class Home extends StatelessWidget {
                   child: Text(
                     "L'application à besoin de se connecter à une instance de SCT² pour fonctionner",
                     style: sctText,
+                    textAlign: TextAlign.center,
                   ),
                   padding: const EdgeInsets.all(20.0),
                 ),
@@ -101,8 +106,34 @@ class Home extends StatelessWidget {
 //                    ),
 //                  ),
 //                ),
-                SizedBox(height: 30.0),
-                SimpleButton(
+                SizedBox(height: 20.0),
+                SecondaryButton(
+                  title: Text("Scanner le QR Code",
+                      style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 17)),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Scanner()),
+                  ),
+//                  onPressed: () => Navigator.of(context).pushReplacement(
+//                      new MaterialPageRoute(
+//                          builder: (context) => new Scanner())),
+//                  onPressed: () => print("Hello"),
+                ),
+                SecondaryButton(
+                  title: Text("Utiliser ses identifiants",
+                      style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 17)),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()),
+                  ),
+                ),
+                PrimaryButton(
                   title: Text("Je n'ai pas d'instance",
                       style: TextStyle(
                           fontFamily: 'Roboto',
