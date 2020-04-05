@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sct_mobile/core/utils/styles.dart';
+import 'package:sct_mobile/ui/shared/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sct_mobile/ui/screens/home.dart';
 
