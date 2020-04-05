@@ -76,13 +76,20 @@ class _ScannerState extends State<Scanner> {
                   ),
                 ),
                 SizedBox(height: 100.0),
-                SizedBox(
-                  height: 230.0,
-                  width: 230.0,
-                  child: const DecoratedBox(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
+                PrimaryButton(
+                    title: Text("Ouvrir la caméra",
+                        style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17)),
+                    onPressed: scan),
+                SizedBox(height: 80.0),
+                Container(
+                  width: 400.0,
+                  child: Text(
+                    result,
+                    style: sctText,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 SizedBox(height: 80.0),
@@ -103,7 +110,7 @@ class _ScannerState extends State<Scanner> {
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w500,
                             fontSize: 17)),
-                    onPressed: scan),
+                    onPressed: () => print("Je n'ai pas d'instance")),
               ],
             ),
           ),
