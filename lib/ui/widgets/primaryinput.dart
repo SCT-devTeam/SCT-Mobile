@@ -29,10 +29,6 @@ class _PrimaryInputState extends State<PrimaryInput> {
         height: 50.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-//          border: Border.all(
-//            color: Colors.white,
-//            width: 2,
-//          ),
         ),
         child: TextField(
           scrollPadding: EdgeInsets.all(30.0),
