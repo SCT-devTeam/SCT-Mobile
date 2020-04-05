@@ -72,7 +72,10 @@ class Home extends StatelessWidget {
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w500,
                           fontSize: 17)),
-                  onPressed: () => print("Hello"),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Menu()),
+                  ),
                 ),
               ],
             ),
