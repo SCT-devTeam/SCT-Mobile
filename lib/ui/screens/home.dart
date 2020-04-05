@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sct_mobile/core/utils/styles.dart';
+import 'package:sct_mobile/ui/shared/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sct_mobile/ui/screens/onboarding_screen.dart';
 import 'package:sct_mobile/ui/screens/scanner.dart';
@@ -7,73 +7,19 @@ import 'package:sct_mobile/ui/screens/scanner.dart';
 import 'package:sct_mobile/ui/widgets/primarybutton.dart';
 import 'package:sct_mobile/ui/widgets/secondarybutton.dart';
 import 'package:sct_mobile/ui/screens/login.dart';
+import 'package:sct_mobile/ui/shared/sizeConfig.dart';
+import 'package:sct_mobile/ui/screens/menu.dart';
 
 main() {
   runApp(
     MaterialApp(
       theme: ThemeData.dark(),
-      home: Home(
-          // Pass the appropriate camera to the TakePictureScreen widget.
-//        camera: firstCamera,
-          ),
+      home: Home(),
     ),
   );
 }
 
-//Future<void> main() async {
-//  // Ensure that plugin services are initialized so that `availableCameras()`
-//  // can be called before `runApp()`
-//  WidgetsFlutterBinding.ensureInitialized();
-//
-//  // Obtain a list of the available cameras on the device.
-//  final cameras = await availableCameras();
-//
-//  // Get a specific camera from the list of available cameras.
-//  final firstCamera = cameras.first;
-//
-//  runApp(
-//    MaterialApp(
-//      theme: ThemeData.dark(),
-//      home: Home(
-//          // Pass the appropriate camera to the TakePictureScreen widget.
-////        camera: firstCamera,
-//          ),
-//    ),
-//  );
-//}
-
-//class Home extends StatefulWidget {
-//  final CameraDescription camera;
-//
-//  const Home({
-//    Key key,
-//    @required this.camera,
-//  }) : super(key: key);
-//
-//  @override
-//  _Home createState() => _Home();
-//}
-
 class Home extends StatelessWidget {
-//  CameraController _cameraController;
-  Future<void> _initializeControllerFuture;
-
-//  @override
-//  void initState() {
-//    super.initState();
-//    // To display the current output from the camera,
-//    // create a CameraController.
-//    _cameraController = CameraController(
-//      // Get a specific camera from the list of available cameras.
-//      widget.camera,
-//      // Define the resolution to use.
-//      ResolutionPreset.medium,
-//    );
-//
-//    // Next, initialize the controller. This returns a Future.
-//    _initializeControllerFuture = _cameraController.initialize();
-//  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -97,15 +43,6 @@ class Home extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                 ),
                 SizedBox(height: 30.0),
-//                SizedBox(
-//                  height: 250.0,
-//                  width: 250.0,
-//                  child: const DecoratedBox(
-//                    decoration: const BoxDecoration(
-//                      color: Colors.white,
-//                    ),
-//                  ),
-//                ),
                 SizedBox(height: 20.0),
                 SecondaryButton(
                   title: Text("Scanner le QR Code",
@@ -117,10 +54,6 @@ class Home extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (context) => Scanner()),
                   ),
-//                  onPressed: () => Navigator.of(context).pushReplacement(
-//                      new MaterialPageRoute(
-//                          builder: (context) => new Scanner())),
-//                  onPressed: () => print("Hello"),
                 ),
                 SecondaryButton(
                   title: Text("Utiliser ses identifiants",

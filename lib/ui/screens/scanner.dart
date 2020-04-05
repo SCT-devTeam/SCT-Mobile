@@ -1,58 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sct_mobile/core/utils/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-//import 'package:camera/camera.dart';
-import 'package:sct_mobile/ui/widgets/primarybutton.dart';
-import 'dart:async';
-import 'package:sct_mobile/ui/widgets/secondarybutton.dart';
-import 'package:sct_mobile/ui/screens/login.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sct_mobile/ui/shared/styles.dart';
+import 'package:sct_mobile/ui/widgets/primarybutton.dart';
+import 'package:sct_mobile/ui/widgets/secondarybutton.dart';
+import 'package:sct_mobile/ui/screens/login.dart';
+import 'dart:async';
 
-//Future<void> main() async {
-//  // Ensure that plugin services are initialized so that `availableCameras()`
-//  // can be called before `runApp()`
-//  WidgetsFlutterBinding.ensureInitialized();
-//
-//  // Obtain a list of the available cameras on the device.
-//  final cameras = await availableCameras();
-//
-//  // Get a specific camera from the list of available cameras.
-//  final firstCamera = cameras.first;
-//
-//  runApp(
-//    MaterialApp(
-//      theme: ThemeData.dark(),
-//      home: Home(
-//          // Pass the appropriate camera to the TakePictureScreen widget.
-////        camera: firstCamera,
-//          ),
-//    ),
-//  );
-//}
 class Scanner extends StatefulWidget {
   @override
   _ScannerState createState() => new _ScannerState();
 }
 
-//class Home extends StatefulWidget {
-//  final CameraDescription camera;
-//
-//  const Home({
-//    Key key,
-//    @required this.camera,
-//  }) : super(key: key);
-//
-//  @override
-//  _Home createState() => _Home();
-//}
-
 class _ScannerState extends State<Scanner> {
-//  CameraController _cameraController;
-  Future<void> _initializeControllerFuture;
   String barcode = "";
-
   String result = "";
 
   Future scan() async {
@@ -83,21 +46,6 @@ class _ScannerState extends State<Scanner> {
 
     print(result);
   }
-//  @override
-//  void initState() {
-//    super.initState();
-//    // To display the current output from the camera,
-//    // create a CameraController.
-//    _cameraController = CameraController(
-//      // Get a specific camera from the list of available cameras.
-//      widget.camera,
-//      // Define the resolution to use.
-//      ResolutionPreset.medium,
-//    );
-//
-//    // Next, initialize the controller. This returns a Future.
-//    _initializeControllerFuture = _cameraController.initialize();
-//  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,24 +111,4 @@ class _ScannerState extends State<Scanner> {
       ),
     );
   }
-
-//  Future scan() async {
-//    try {
-//      String barcode = await BarcodeScanner.scan();
-//      setState(() => this.barcode = barcode);
-//    } on PlatformException catch (e) {
-//      if (e.code == BarcodeScanner.CameraAccessDenied) {
-//        setState(() {
-//          this.barcode = 'The user did not grant the camera permission!';
-//        });
-//      } else {
-//        setState(() => this.barcode = 'Unknown error: $e');
-//      }
-//    } on FormatException {
-//      setState(() => this.barcode =
-//          'null (User returned using the "back"-button before scanning anything. Result)');
-//    } catch (e) {
-//      setState(() => this.barcode = 'Unknown error: $e');
-//    }
-//  }
 }
