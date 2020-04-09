@@ -43,12 +43,30 @@ final sctText = TextStyle(
   height: 1.2,
 );
 
+// TEXT
+final sctTextBold = TextStyle(
+  color: Color(0xff1a1a1a),
+  fontFamily: 'Verdana',
+  fontSize: 18.0,
+  height: 1.2,
+  fontWeight: FontWeight.bold,
+);
+
 // SUBTITLE LARGE BLACK
 final sctSubtitleStyleLarge_b = TextStyle(
   color: Color(0xff1a1a1a),
   fontFamily: 'Verdana Pro',
   fontSize: 24.0,
   height: 1.2,
+);
+
+// SUBTITLE LARGE BLACK BOLD
+final sctSubtitleStyleLargeBold_b = TextStyle(
+  color: Color(0xff1a1a1a),
+  fontFamily: 'Verdana Pro',
+  fontSize: 24.0,
+  height: 1.2,
+  fontWeight: FontWeight.bold,
 );
 
 // SUBTITLE LARGE WHITE
@@ -73,4 +91,13 @@ final sctSubtitleStyleMed_w = TextStyle(
   fontFamily: 'Verdana Pro',
   fontSize: 20.0,
   height: 1.2,
+);
+
+// SUBTITLE MEDIUM BLACK BOLD
+final sctSubtitleStyleMedBold_b = TextStyle(
+  color: Color(0xff1a1a1a),
+  fontFamily: 'Verdana Pro',
+  fontSize: 20.0,
+  height: 1.2,
+  fontWeight: FontWeight.bold,
 );
