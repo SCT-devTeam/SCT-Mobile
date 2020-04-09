@@ -84,6 +84,7 @@ class _ScannerState extends State<Scanner> {
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w500,
                             fontSize: 17)),
+                    isEnabled: true,
                     onPressed: scan),
                 SizedBox(height: 80.0),
                 Container(
@@ -101,6 +102,7 @@ class _ScannerState extends State<Scanner> {
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.w500,
                           fontSize: 17)),
+                  isEnabled: true,
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Login()),
@@ -112,6 +114,7 @@ class _ScannerState extends State<Scanner> {
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w500,
                             fontSize: 17)),
+                    isEnabled: true,
                     onPressed: () => print("Je n'ai pas d'instance")),
               ],
             ),
