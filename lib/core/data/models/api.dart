@@ -20,7 +20,6 @@ class CallApi {
   _setHeaders() => {
         'Content-type': 'application/json',
         'Accept': 'application/json',
-//        'Authorization': 'Bearer ' + _getToken()
       };
 
   _getToken() async {
