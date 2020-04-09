@@ -48,6 +48,17 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                   padding: EdgeInsets.all(10.0), child: Text("Recettes"))),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: new FloatingActionButton(
+        backgroundColor: Color(0xfff7c91e),
+        onPressed: () {
+          print("Pressed");
+        },
+        child: new Icon(
+          Icons.add,
+          size: 30.0,
+        ),
+      ),
     );
   }
 }
