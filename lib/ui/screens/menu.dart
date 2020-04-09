@@ -9,7 +9,7 @@ class Menu extends StatelessWidget {
     return ChangeNotifierProvider<BottomNavigationBarProvider>(
       create: (_) => BottomNavigationBarProvider(),
       child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Color(0xfffafafa),
           body: SafeArea(
               bottom: false,
               child: Stack(children: <Widget>[BottomNavigationWidget()]))),
