@@ -2,17 +2,22 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatefulWidget {
-  PrimaryButton({@required this.onPressed, this.title});
+  PrimaryButton(
+      {@required this.onPressed, this.title, @required this.isEnabled});
   final GestureTapCallback onPressed;
   final Widget title;
+  bool isEnabled;
+//
+//  @override
+//  void initState() {
+//    isEnabled = false;
+//  }
 
   @override
   _PrimaryButtonState createState() => _PrimaryButtonState();
 }
 
 class _PrimaryButtonState extends State<PrimaryButton> {
-  bool _isPressed = false;
-
 //  void handleTap() {
 //    setState(() {
 //        _isPressed = !_isPressed;
@@ -20,6 +25,10 @@ class _PrimaryButtonState extends State<PrimaryButton> {
 //        Future.delayed(const Duration(milliseconds: 1500))
 //            .then((value) => _isPressed = false);
 //    });
+//  }
+//  @override
+//  void initState() {
+//    widget.isEnabled = false;
 //  }
 
   @override
@@ -38,7 +47,10 @@ class _PrimaryButtonState extends State<PrimaryButton> {
         ],
       ),
       child: RaisedButton(
-        onPressed: widget.onPressed,
+        onPressed: !widget.isEnabled ? null : widget.onPressed,
+//        onPressed: widget.onPressed,
+        disabledColor: Color(0xff2f3e55),
+        disabledTextColor: Colors.grey,
         textColor: Colors.white,
         hoverColor: Color(0xff1e1ef7),
 //        color: (_isPressed ? Colors.blue : Color(0xff2f3e55)),
