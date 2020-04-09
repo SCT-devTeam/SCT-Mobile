@@ -6,6 +6,7 @@ import 'package:sct_mobile/ui/widgets/primarybutton.dart';
 import 'package:sct_mobile/ui/widgets/secondarybutton.dart';
 import 'package:sct_mobile/ui/screens/login.dart';
 import 'package:sct_mobile/ui/screens/menu.dart';
+import 'package:sct_mobile/ui/screens/noinstance.dart';
 
 main() {
   runApp(
@@ -72,7 +73,7 @@ class Home extends StatelessWidget {
                   isEnabled: true,
                   onPressed: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Menu()),
+                    MaterialPageRoute(builder: (context) => NoInstance()),
                   ),
                 ),
               ],
