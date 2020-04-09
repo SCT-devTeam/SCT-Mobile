@@ -30,7 +30,8 @@ class _PrimaryInputState extends State<PrimaryInput> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
         ),
-        child: TextField(
+        child: TextFormField(
+          textInputAction: TextInputAction.next,
           scrollPadding: EdgeInsets.all(30.0),
           decoration: InputDecoration(
             hintText: widget.title,
@@ -39,7 +40,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
               borderRadius: BorderRadius.circular(50),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.white, width: 3.0),
+              borderSide: const BorderSide(color: Colors.black, width: 3.0),
               borderRadius: BorderRadius.circular(50),
             ),
             fillColor: const Color(0xffffffff).withOpacity(0.3),
