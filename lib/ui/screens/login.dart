@@ -4,6 +4,7 @@ import 'package:sct_mobile/ui/shared/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sct_mobile/ui/screens/scanner.dart';
 import 'package:sct_mobile/ui/screens/menu.dart';
+import 'package:sct_mobile/ui/screens/noinstance.dart';
 import 'package:sct_mobile/ui/widgets/primarybutton.dart';
 import 'package:validate/validate.dart';
 import 'package:sct_mobile/core/data/models/api.dart';
@@ -219,7 +220,7 @@ class _LoginState extends State<Login> {
                     isEnabled: true,
                     onPressed: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Scanner()),
+                      MaterialPageRoute(builder: (context) => NoInstance()),
                     ),
                   ),
                 ],
