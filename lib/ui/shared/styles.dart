@@ -6,7 +6,7 @@ import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 final sctTitleStyleLarge_b = TextStyle(
   color: Color(0xff1a1a1a),
   fontFamily: 'Roboto',
-  fontSize: 50.0 * SizeConfig.textMultiplier,
+  fontSize: 50.0,
   height: 1.5,
 //  fontWeight: FontWeight.bold,
 );
@@ -15,7 +15,7 @@ final sctTitleStyleLarge_b = TextStyle(
 final sctTitleStyleLarge_w = TextStyle(
   color: Colors.white,
   fontFamily: 'Roboto',
-  fontSize: 50.0 * SizeConfig.textMultiplier,
+  fontSize: 50.0,
   height: 1.5,
 );
 
@@ -23,7 +23,7 @@ final sctTitleStyleLarge_w = TextStyle(
 final sctTitleStyleMed_b = TextStyle(
   color: Color(0xff1a1a1a),
   fontFamily: 'Roboto',
-  fontSize: 35.0 * SizeConfig.textMultiplier,
+  fontSize: 35.0,
   height: 1.5,
 );
 
@@ -31,7 +31,7 @@ final sctTitleStyleMed_b = TextStyle(
 final sctTitleStyleMed_w = TextStyle(
   color: Colors.white,
   fontFamily: 'Roboto',
-  fontSize: 35.0 * SizeConfig.textMultiplier,
+  fontSize: 35.0,
   height: 1.5,
 );
 
@@ -39,7 +39,7 @@ final sctTitleStyleMed_w = TextStyle(
 final sctText = TextStyle(
   color: Color(0xff1a1a1a),
   fontFamily: 'Verdana',
-  fontSize: 18.0 * SizeConfig.textMultiplier,
+  fontSize: 18.0,
   height: 1.2,
 );
 
@@ -47,7 +47,7 @@ final sctText = TextStyle(
 final sctSubtitleStyleLarge_b = TextStyle(
   color: Color(0xff1a1a1a),
   fontFamily: 'Verdana Pro',
-  fontSize: 24.0 * SizeConfig.textMultiplier,
+  fontSize: 24.0,
   height: 1.2,
 );
 
@@ -55,7 +55,7 @@ final sctSubtitleStyleLarge_b = TextStyle(
 final sctSubtitleStyleLarge_w = TextStyle(
   color: Colors.white,
   fontFamily: 'Verdana Pro',
-  fontSize: 24.0 * SizeConfig.textMultiplier,
+  fontSize: 24.0,
   height: 1.2,
 );
 
@@ -63,7 +63,7 @@ final sctSubtitleStyleLarge_w = TextStyle(
 final sctSubtitleStyleMed_b = TextStyle(
   color: Color(0xff1a1a1a),
   fontFamily: 'Verdana Pro',
-  fontSize: 20.0 * SizeConfig.textMultiplier,
+  fontSize: 20.0,
   height: 1.2,
 );
 
@@ -71,6 +71,6 @@ final sctSubtitleStyleMed_b = TextStyle(
 final sctSubtitleStyleMed_w = TextStyle(
   color: Colors.white,
   fontFamily: 'Verdana Pro',
-  fontSize: 20.0 * SizeConfig.textMultiplier,
+  fontSize: 20.0,
   height: 1.2,
 );
