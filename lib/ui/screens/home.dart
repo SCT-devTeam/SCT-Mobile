@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sct_mobile/ui/shared/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sct_mobile/ui/screens/onboarding_screen.dart';
 import 'package:sct_mobile/ui/screens/scanner.dart';
-//import 'package:camera/camera.dart';
 import 'package:sct_mobile/ui/widgets/primarybutton.dart';
 import 'package:sct_mobile/ui/widgets/secondarybutton.dart';
 import 'package:sct_mobile/ui/screens/login.dart';
-import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 import 'package:sct_mobile/ui/screens/menu.dart';
 
 main() {
