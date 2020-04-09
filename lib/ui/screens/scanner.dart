@@ -27,11 +27,12 @@ class _ScannerState extends State<Scanner> {
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
-          result = "Camera permission was denied";
+          result = "Veuillez autoriser l'application à utiliser la caméra";
         });
       } else {
         setState(() {
-          result = "Unknown Error $ex";
+//          result = "Unknown Error $ex";
+          result = "";
         });
       }
     } on FormatException {
@@ -40,7 +41,8 @@ class _ScannerState extends State<Scanner> {
       });
     } catch (ex) {
       setState(() {
-        result = "Unknown Error $ex";
+//        result = "Unknown Error $ex";
+        result = "";
       });
     }
 
