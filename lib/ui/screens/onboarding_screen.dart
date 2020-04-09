@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:sct_mobile/ui/shared/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sct_mobile/ui/screens/home.dart';
+import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -125,7 +126,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       },
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.all(5.0),
+                          padding: EdgeInsets.all(40.0),
                           child: Column(
                             children: <Widget>[
                               Text(
@@ -133,7 +134,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 style: sctTitleStyleLarge_b,
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(height: 70.0),
+                              SizedBox(height: 90.0),
                               Center(
                                 child: SvgPicture.asset(
                                   'assets/images/contactsAroundMan_illustration_colored.svg',
@@ -145,7 +146,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(20.0),
+                          padding: EdgeInsets.all(40.0),
                           child: Column(
                             children: <Widget>[
                               Text(
@@ -153,7 +154,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 style: sctTitleStyleLarge_w,
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(height: 70.0),
+                              SizedBox(height: 90.0),
                               Center(
                                 child: SvgPicture.asset(
                                   'assets/images/invoicesBehindWoman_illustration_colored.svg',
@@ -176,7 +177,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               ),
                               Column(
                                 children: <Widget>[
-                                  SizedBox(height: 60.0),
+                                  SizedBox(height: 100.0),
                                   Row(
                                     children: <Widget>[
                                       Icon(
@@ -248,10 +249,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(width: 50.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: _buildPageIndicator(),
+                  Padding(
+                    padding: const EdgeInsets.all(80.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: _buildPageIndicator(),
+                    ),
                   ),
                   _currentPage != _numPages - 1
                       ? Expanded(
@@ -296,7 +299,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       bottomSheet: _currentPage == _numPages - 1
           ? Container(
-              height: 100.0,
+              height: 90.0,
               width: double.infinity,
               color: Colors.white,
               child: GestureDetector(
@@ -306,7 +309,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
                 child: Center(
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 30.0),
+                    padding: EdgeInsets.only(bottom: 15.0),
                     child: Text(
                       "J'ai compris",
                       style: TextStyle(
