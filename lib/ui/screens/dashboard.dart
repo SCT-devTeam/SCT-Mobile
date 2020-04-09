@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sct_mobile/ui/widgets/primarybutton.dart';
+import 'package:sct_mobile/ui/widgets/statcard.dart';
 import 'package:http/http.dart';
 import 'package:sct_mobile/core/data/models/api.dart';
 import 'package:sct_mobile/ui/screens/home.dart';
@@ -53,17 +54,45 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Material(
-        child: Stack(
+        child: ListView(
+          padding: EdgeInsets.all(30.0),
           children: <Widget>[
-            Center(child: Text("Page du Dashboard")),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: new Text(
-                "",
-                style:
-                    new TextStyle(fontSize: 24.0, color: Colors.grey.shade700),
-              ),
-            ),
+            SizedBox(height: 20.0),
+            StatCard(
+                title: 'Factures',
+                icon: 'invoice_icon_black',
+                value: 20,
+                color: 0xfffbe48e),
+            SizedBox(height: 20.0),
+            StatCard(
+                title: 'Factures en retard',
+                icon: 'invoice_icon_black',
+                value: null,
+                color: 0xffdcd2fd),
+            SizedBox(height: 20.0),
+            StatCard(
+                title: 'Factures en attente',
+                icon: 'invoice_icon_black',
+                value: null,
+                color: 0xfffdbbbb),
+            SizedBox(height: 20.0),
+            StatCard(
+                title: 'Factures disputées',
+                icon: 'invoice_icon_black',
+                value: null,
+                color: 0xfffdbbbb),
+            SizedBox(height: 20.0),
+            StatCard(
+                title: 'Clients',
+                icon: 'avatar_icon_black',
+                value: null,
+                color: 0xffdcd2fd),
+            SizedBox(height: 20.0),
+            StatCard(
+                title: 'Prospects actifs',
+                icon: 'avatar_icon_black',
+                value: null,
+                color: 0xffdcd2fd),
             PrimaryButton(
                 title: Text("Se déconnecter",
                     style: TextStyle(
