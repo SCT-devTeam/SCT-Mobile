@@ -1,16 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:sct_mobile/ui/widgets/personcard.dart';
 
 class Clients extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Stack(
-        children: <Widget>[
-          Center(
-            child: Text("Page des clients"),
-          ),
-        ],
+    return WillPopScope(
+      child: Material(
+        child: ListView(
+          padding: EdgeInsets.all(30.0),
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            PersonCard(
+                title: 'John Doe',
+                icon: 'avatar_icon_black',
+                value: 0660032567,
+                color: 0xffdcd2fd),
+            SizedBox(height: 20.0),
+            PersonCard(
+                title: 'John Doe',
+                icon: 'avatar_icon_black',
+                value: 0660032567,
+                color: 0xffdcd2fd),
+            SizedBox(height: 20.0),
+            PersonCard(
+                title: 'John Doe',
+                icon: 'avatar_icon_black',
+                value: 0660032567,
+                color: 0xffdcd2fd),
+          ],
+        ),
       ),
+      onWillPop: () async => false,
     );
   }
 }
