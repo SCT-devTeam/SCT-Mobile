@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sct_mobile/core/utils/styles.dart';
+import 'package:sct_mobile/ui/shared/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sct_mobile/ui/screens/home.dart';
+import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -13,7 +15,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
   Animatable<Color> _background;
-  Animatable<Color> _textColor;
 
   @override
   void initState() {
@@ -22,29 +23,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _initialize() {
-    _textColor = TweenSequence<Color>([
-      TweenSequenceItem(
-        weight: 1.0,
-        tween: ColorTween(
-          begin: Colors.white,
-          end: Colors.black,
-        ),
-      ),
-      TweenSequenceItem(
-        weight: 1.0,
-        tween: ColorTween(
-          begin: Colors.black,
-          end: Colors.black,
-        ),
-      ),
-      TweenSequenceItem(
-        weight: 1.0,
-        tween: ColorTween(
-          begin: Colors.black,
-          end: Colors.black,
-        ),
-      ),
-    ]);
     _background = TweenSequence<Color>([
       TweenSequenceItem(
         weight: 1.0,
@@ -122,21 +100,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Container(
-                    alignment: Alignment.centerRight,
-                    child: FlatButton(
-                      // TODO: Make skip button disappear on the third page
-                      // TODO: Make skip button change color to white on the second page
-                      onPressed: () => print('Skip'),
-                      child: Text(
-                        'Skip',
-                        style: TextStyle(
-                          color: Color(0xff1a1a1a),
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ),
-                  ),
+                  // TODO: Make skip button redirect to the home and disappear on the third page
+//                  Container(
+//                    alignment: Alignment.centerRight,
+//                    child: FlatButton(
+//                      onPressed: () => print('Skip'),
+//                      child: Text(
+//                        'Skip',
+//                        style: TextStyle(
+//                          color: Color(0xff1a1a1a),
+//                          fontSize: 20.0,
+//                        ),
+//                      ),
+//                    ),
+//                  ),
                   Container(
                     height: 600.0,
                     child: PageView(
@@ -149,7 +126,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       },
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.all(5.0),
+                          padding: EdgeInsets.all(40.0),
                           child: Column(
                             children: <Widget>[
                               Text(
@@ -157,7 +134,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 style: sctTitleStyleLarge_b,
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(height: 70.0),
+                              SizedBox(height: 90.0),
                               Center(
                                 child: SvgPicture.asset(
                                   'assets/images/contactsAroundMan_illustration_colored.svg',
@@ -169,7 +146,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(20.0),
+                          padding: EdgeInsets.all(40.0),
                           child: Column(
                             children: <Widget>[
                               Text(
@@ -177,7 +154,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 style: sctTitleStyleLarge_w,
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(height: 70.0),
+                              SizedBox(height: 90.0),
                               Center(
                                 child: SvgPicture.asset(
                                   'assets/images/invoicesBehindWoman_illustration_colored.svg',
@@ -200,7 +177,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               ),
                               Column(
                                 children: <Widget>[
-                                  SizedBox(height: 60.0),
+                                  SizedBox(height: 100.0),
                                   Row(
                                     children: <Widget>[
                                       Icon(
@@ -272,10 +249,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(width: 50.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: _buildPageIndicator(),
+                  Padding(
+                    padding: const EdgeInsets.all(80.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: _buildPageIndicator(),
+                    ),
                   ),
                   _currentPage != _numPages - 1
                       ? Expanded(
@@ -320,15 +299,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       bottomSheet: _currentPage == _numPages - 1
           ? Container(
-              height: 100.0,
+              height: 90.0,
               width: double.infinity,
               color: Colors.white,
               child: GestureDetector(
-                onTap: () => print('Get started'),
-                // TODO: Show main menu of the app
+                onTap: () {
+                  Navigator.of(context).pushReplacement(
+                      new MaterialPageRoute(builder: (context) => new Home()));
+                },
                 child: Center(
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 30.0),
+                    padding: EdgeInsets.only(bottom: 15.0),
                     child: Text(
                       "J'ai compris",
                       style: TextStyle(

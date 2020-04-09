@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 // TODO: Remove the white and black alternatives and create a theme for more appropriate use
 
 // HEADER LARGE BLACK
