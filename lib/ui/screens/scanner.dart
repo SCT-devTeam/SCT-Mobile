@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sct_mobile/ui/screens/noinstance.dart';
+import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 import 'package:sct_mobile/ui/shared/styles.dart';
 import 'package:sct_mobile/ui/widgets/primarybutton.dart';
 import 'package:sct_mobile/ui/widgets/secondarybutton.dart';
@@ -77,16 +79,15 @@ class _ScannerState extends State<Scanner> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(height: 100.0),
-                PrimaryButton(
+                SizedBox(height: 10.0 * SizeConfig.blockSizeVertical),
+                SecondaryButton(
                     title: Text("Ouvrir la caméra",
                         style: TextStyle(
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w500,
                             fontSize: 17)),
-                    isEnabled: true,
                     onPressed: scan),
-                SizedBox(height: 80.0),
+                SizedBox(height: 3.0 * SizeConfig.blockSizeVertical),
                 Container(
                   width: 400.0,
                   child: Text(
@@ -115,7 +116,8 @@ class _ScannerState extends State<Scanner> {
                             fontWeight: FontWeight.w500,
                             fontSize: 17)),
                     isEnabled: true,
-                    onPressed: () => print("Je n'ai pas d'instance")),
+                    onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => NoInstance()))),
               ],
             ),
           ),
