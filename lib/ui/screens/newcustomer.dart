@@ -5,6 +5,8 @@ import 'package:sct_mobile/core/data/classes/customer.dart';
 import 'package:sct_mobile/ui/widgets/secondaryinput.dart';
 
 class NewCustomer extends StatefulWidget {
+  final String title;
+  NewCustomer({@required this.title});
   @override
   _NewCustomerState createState() => _NewCustomerState();
 }
@@ -21,8 +23,8 @@ class _NewCustomerState extends State<NewCustomer> {
   final FocusNode _nameFocus = FocusNode();
   final FocusNode _adresseFocus = FocusNode();
 
-  List<String> _locations = ['A', 'B', 'C', 'D']; // Option 2
-  String _selectedLocation; // Option 2
+  List<String> _types = ['Prospect', 'Actif', 'Archivé', 'Supprimé'];
+  String _selectedLocation;
 
   _fieldFocusChange(
       BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
@@ -35,6 +37,7 @@ class _NewCustomerState extends State<NewCustomer> {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
+            title: Text(widget.title),
             elevation: 0,
             backgroundColor: Color(0xfff7c91e),
             leading: IconButton(
@@ -74,7 +77,7 @@ class _NewCustomerState extends State<NewCustomer> {
                         _selectedLocation = newValue;
                       });
                     },
-                    items: _locations.map((location) {
+                    items: _types.map((location) {
                       return DropdownMenuItem(
                         child: new Text(location),
                         value: location,

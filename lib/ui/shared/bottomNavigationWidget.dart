@@ -63,7 +63,8 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
               onPressed: () => Navigator.of(context).push(
                 CupertinoPageRoute(
                     fullscreenDialog: true,
-                    builder: (context) => NewCustomer()),
+                    builder: (context) =>
+                        NewCustomer(title: "Ajouter un client")),
               ),
               child: new Icon(
                 Icons.add,
