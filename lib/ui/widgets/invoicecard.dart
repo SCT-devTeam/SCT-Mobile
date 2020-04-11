@@ -1,60 +1,54 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sct_mobile/ui/shared/styles.dart';
+import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 import 'package:sct_mobile/ui/widgets/cardlogo.dart';
+import 'package:sct_mobile/core/data/classes/invoice.dart';
 
-class InvoiceCard extends StatefulWidget {
-  InvoiceCard(
-      {@required this.title,
-      @required this.icon,
-      this.price,
-      this.date,
-      @required this.color});
-  final String title;
-  final String icon;
-  final int price;
-  final String date;
-  final int color;
+class InvoiceCard extends StatelessWidget {
+  final Invoice invoice;
+  InvoiceCard({@required this.invoice});
+  final String icon = 'invoice_icon_black';
+  final int color = 0xffdcd2fd;
 
-  @override
-  _InvoiceCardState createState() => _InvoiceCardState();
-}
-
-class _InvoiceCardState extends State<InvoiceCard> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Card(
       child: Row(
         children: <Widget>[
           SizedBox(height: 10.0, width: 10.0),
           Container(
-              width: 300,
+              width: SizeConfig.blockSizeHorizontal * 70,
               height: 150,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Expanded(
                     child: Center(
-                      child: CardLogo(icon: widget.icon, color: widget.color),
+                      child: CardLogo(icon: icon, color: color),
                     ),
                   ),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          widget.date,
-                          style: sctText,
-                        ),
+                        invoice.payment_date != null
+                            ? Text(invoice.payment_date, style: sctText)
+                            : Text(
+                                "null",
+                                style: sctText,
+                              ),
                         Center(
                           child: Text(
-                            widget.title,
+//                            invoice.qualification,
+                            'overdue',
                             style: sctSubtitleStyleLarge_b,
                             textAlign: TextAlign.center,
                           ),
                         ),
                         Text(
-                          widget.price.toString() + "€",
+                          invoice.customer_id.toString() + "€",
                           style: sctSubtitleStyleLargeBold_b,
                         ),
                       ],

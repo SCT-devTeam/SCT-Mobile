@@ -2,38 +2,31 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sct_mobile/ui/shared/styles.dart';
 import 'package:sct_mobile/ui/widgets/cardlogo.dart';
+import 'package:sct_mobile/ui/shared/sizeConfig.dart';
+import 'package:sct_mobile/core/data/classes/customer.dart';
 
-class PersonCard extends StatefulWidget {
-  PersonCard(
-      {@required this.title,
-      @required this.icon,
-      this.value,
-      @required this.color});
-  final String title;
-  final String icon;
-  final int value;
-  final int color;
+class PersonCard extends StatelessWidget {
+  final Customer customer;
+  PersonCard({@required this.customer});
+  final String icon = 'avatar_icon_black';
+  final int color = 0xffdcd2fd;
 
-  @override
-  _PersonCardState createState() => _PersonCardState();
-}
-
-class _PersonCardState extends State<PersonCard> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Card(
       child: Row(
         children: <Widget>[
           SizedBox(height: 10.0, width: 10.0),
           Container(
-              width: 300,
+              width: SizeConfig.blockSizeHorizontal * 70,
               height: 110,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Expanded(
                     child: Center(
-                      child: CardLogo(icon: widget.icon, color: widget.color),
+                      child: CardLogo(icon: icon, color: color),
                     ),
                   ),
                   Expanded(
@@ -42,13 +35,13 @@ class _PersonCardState extends State<PersonCard> {
                       children: <Widget>[
                         Center(
                           child: Text(
-                            widget.title,
+                            customer.firstname,
                             style: sctText,
                             textAlign: TextAlign.center,
                           ),
                         ),
                         Text(
-                          widget.value.toString(),
+                          customer.status,
                           style: sctSubtitleStyleMedBold_b,
                         ),
                       ],

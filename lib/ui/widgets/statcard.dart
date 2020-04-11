@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sct_mobile/ui/shared/styles.dart';
 import 'package:sct_mobile/ui/widgets/cardlogo.dart';
+import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 
 class StatCard extends StatefulWidget {
   StatCard(
@@ -21,12 +22,13 @@ class StatCard extends StatefulWidget {
 class _StatCardState extends State<StatCard> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Card(
       child: Row(
         children: <Widget>[
           SizedBox(height: 10.0, width: 10.0),
           Container(
-              width: 300,
+              width: SizeConfig.blockSizeHorizontal * 70,
               height: 150,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
