@@ -6,6 +6,7 @@ import 'package:sct_mobile/ui/screens/scanner.dart';
 import 'package:sct_mobile/ui/screens/menu.dart';
 import 'package:sct_mobile/ui/screens/noinstance.dart';
 import 'package:sct_mobile/ui/widgets/primarybutton.dart';
+import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 import 'package:validate/validate.dart';
 import 'package:sct_mobile/core/data/models/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -83,148 +84,150 @@ class _LoginState extends State<Login> {
       FocusScope.of(context).requestFocus(nextFocus);
     }
 
-    return MaterialApp(
-      title: 'Welcome to SCT',
-      home: Center(
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Color(0xfff7c91e),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
+    SizeConfig().init(context);
+
+    return Center(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          elevation: 0,
           backgroundColor: Color(0xfff7c91e),
-          body: Form(
-            key: this._formKey,
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(30.0),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ),
+        backgroundColor: Color(0xfff7c91e),
+        body: Form(
+          key: this._formKey,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(30.0),
 //              mainAxisAlignment: MainAxisAlignment.,
-              child: Column(
-                children: <Widget>[
-                  SvgPicture.asset(
-                      'assets/images/sct_logo_colored_squaredWithoutBackgroundAndSubtitle.svg'),
-                  SizedBox(height: 40.0),
-                  Text(
-                      _wrongCredentials
-                          ? 'Mauvais identifiant / mot de passe'
-                          : '',
-                      style: TextStyle(color: Colors.red)),
-                  SizedBox(height: 10.0),
-                  TextFormField(
-                    controller: _urlController,
-                    autovalidate: true,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.url,
-                    focusNode: _urlFocus,
-                    onFieldSubmitted: (term) {
-                      _fieldFocusChange(context, _urlFocus, _mailFocus);
-                    },
-                    scrollPadding: EdgeInsets.all(30.0),
-                    decoration: InputDecoration(
-                      hintText: "URL de l'instance",
-                      enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.white, width: 3.0),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.black, width: 3.0),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      fillColor: const Color(0xffffffff).withOpacity(0.3),
-                      filled: true,
+            child: Column(
+              children: <Widget>[
+                SvgPicture.asset(
+                    'assets/images/sct_logo_colored_squaredWithoutBackgroundAndSubtitle.svg',
+                    height: 20.0 * SizeConfig.blockSizeVertical,
+                    width: 20.0 * SizeConfig.blockSizeHorizontal),
+                SizedBox(height: 40.0),
+                Text(
+                    _wrongCredentials
+                        ? 'Mauvais identifiant / mot de passe'
+                        : '',
+                    style: TextStyle(color: Colors.red)),
+                SizedBox(height: 10.0),
+                TextFormField(
+                  controller: _urlController,
+                  autovalidate: true,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.url,
+                  focusNode: _urlFocus,
+                  onFieldSubmitted: (term) {
+                    _fieldFocusChange(context, _urlFocus, _mailFocus);
+                  },
+                  scrollPadding: EdgeInsets.all(30.0),
+                  decoration: InputDecoration(
+                    hintText: "URL de l'instance",
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.white, width: 3.0),
+                      borderRadius: BorderRadius.circular(50),
                     ),
-                  ),
-                  SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: _mailController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    validator: this._validateEmail,
-                    focusNode: _mailFocus,
-                    onFieldSubmitted: (term) {
-                      _fieldFocusChange(context, _mailFocus, _passwordFocus);
-                    },
-                    scrollPadding: EdgeInsets.all(30.0),
-                    decoration: InputDecoration(
-                      hintText: "Adresse email",
-                      enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.white, width: 3.0),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.black, width: 3.0),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      fillColor: const Color(0xffffffff).withOpacity(0.3),
-                      filled: true,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.black, width: 3.0),
+                      borderRadius: BorderRadius.circular(50),
                     ),
+                    fillColor: const Color(0xffffffff).withOpacity(0.3),
+                    filled: true,
                   ),
-                  SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: _passwordController,
-                    textInputAction: TextInputAction.done,
-                    obscureText: true,
-                    focusNode: _passwordFocus,
-                    onFieldSubmitted: (value) {
-                      _passwordFocus.unfocus();
+                ),
+                SizedBox(height: 15.0),
+                TextFormField(
+                  controller: _mailController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: this._validateEmail,
+                  focusNode: _mailFocus,
+                  onFieldSubmitted: (term) {
+                    _fieldFocusChange(context, _mailFocus, _passwordFocus);
+                  },
+                  scrollPadding: EdgeInsets.all(30.0),
+                  decoration: InputDecoration(
+                    hintText: "Adresse email",
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.white, width: 3.0),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.black, width: 3.0),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    fillColor: const Color(0xffffffff).withOpacity(0.3),
+                    filled: true,
+                  ),
+                ),
+                SizedBox(height: 15.0),
+                TextFormField(
+                  controller: _passwordController,
+                  textInputAction: TextInputAction.done,
+                  obscureText: true,
+                  focusNode: _passwordFocus,
+                  onFieldSubmitted: (value) {
+                    _passwordFocus.unfocus();
 //                      submit();
 //                      _calculator();
-                    },
-                    keyboardType: TextInputType.visiblePassword,
-                    validator: this._validatePassword,
-                    scrollPadding: EdgeInsets.all(30.0),
-                    decoration: InputDecoration(
-                      hintText: "Mot de passe",
-                      enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.white, width: 3.0),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.black, width: 3.0),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      fillColor: const Color(0xffffffff).withOpacity(0.3),
-                      filled: true,
+                  },
+                  keyboardType: TextInputType.visiblePassword,
+                  validator: this._validatePassword,
+                  scrollPadding: EdgeInsets.all(30.0),
+                  decoration: InputDecoration(
+                    hintText: "Mot de passe",
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.white, width: 3.0),
+                      borderRadius: BorderRadius.circular(50),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      SizedBox(width: 200.0),
-                      PrimaryButton(
-                          title: Text(
-                              _isLoading ? 'Connexion...' : 'Se connecter',
-                              style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 17)),
-                          isEnabled: _connectButtonState,
-                          onPressed: _isLoading ? null : submit),
-                    ],
-                  ),
-                  PrimaryButton(
-                    title: Text("Je n'ai pas d'instance",
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 17)),
-                    isEnabled: true,
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => NoInstance()),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.black, width: 3.0),
+                      borderRadius: BorderRadius.circular(50),
                     ),
+                    fillColor: const Color(0xffffffff).withOpacity(0.3),
+                    filled: true,
                   ),
-                ],
-              ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+//                    SizedBox(width: 30.0 * SizeConfig.blockSizeHorizontal),
+                    PrimaryButton(
+                        title: Text(
+                            _isLoading ? 'Connexion...' : 'Se connecter',
+                            style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 17)),
+                        isEnabled: _connectButtonState,
+                        onPressed: _isLoading ? null : submit),
+                  ],
+                ),
+                PrimaryButton(
+                  title: Text("Je n'ai pas d'instance",
+                      style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 17)),
+                  isEnabled: true,
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NoInstance()),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -250,6 +253,7 @@ class _LoginState extends State<Login> {
         print('Login success');
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('token', body['token']);
+        print(prefs.getString('token'));
 //      prefs.setString('user', json.encode(body['user']));
         Navigator.of(context).pushNamed('menu');
       } else {
