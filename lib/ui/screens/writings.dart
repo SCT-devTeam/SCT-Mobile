@@ -80,7 +80,6 @@ class _WritingsPageState extends State<WritingsPage> {
         var res = json.decode(response.body);
         Iterable list = res['invoices'];
         _invoices = list.map((model) => Invoice.fromJSON(model)).toList();
-        print(_invoices);
       });
     });
 //    final Stream<Invoice> stream = await fetchInvoices(6, 1);
