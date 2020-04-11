@@ -6,7 +6,7 @@ import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 final sctTitleStyleLarge_b = TextStyle(
   color: Color(0xff1a1a1a),
   fontFamily: 'Roboto',
-  fontSize: 50.0,
+  fontSize: 11.0 * SizeConfig.blockSizeHorizontal,
   height: 1.5,
 //  fontWeight: FontWeight.bold,
 );
@@ -15,7 +15,7 @@ final sctTitleStyleLarge_b = TextStyle(
 final sctTitleStyleLarge_w = TextStyle(
   color: Colors.white,
   fontFamily: 'Roboto',
-  fontSize: 50.0,
+  fontSize: 11.0 * SizeConfig.blockSizeHorizontal,
   height: 1.5,
 );
 
@@ -23,7 +23,7 @@ final sctTitleStyleLarge_w = TextStyle(
 final sctTitleStyleMed_b = TextStyle(
   color: Color(0xff1a1a1a),
   fontFamily: 'Roboto',
-  fontSize: 35.0,
+  fontSize: 6.0 * SizeConfig.blockSizeHorizontal,
   height: 1.5,
 );
 
@@ -31,7 +31,7 @@ final sctTitleStyleMed_b = TextStyle(
 final sctTitleStyleMed_w = TextStyle(
   color: Colors.white,
   fontFamily: 'Roboto',
-  fontSize: 35.0,
+  fontSize: 6.0 * SizeConfig.blockSizeHorizontal,
   height: 1.5,
 );
 
@@ -56,7 +56,7 @@ final sctTextBold = TextStyle(
 final sctSubtitleStyleLarge_b = TextStyle(
   color: Color(0xff1a1a1a),
   fontFamily: 'Verdana Pro',
-  fontSize: 24.0,
+  fontSize: 5.5 * SizeConfig.blockSizeHorizontal,
   height: 1.2,
 );
 
@@ -73,7 +73,7 @@ final sctSubtitleStyleLargeBold_b = TextStyle(
 final sctSubtitleStyleLarge_w = TextStyle(
   color: Colors.white,
   fontFamily: 'Verdana Pro',
-  fontSize: 24.0,
+  fontSize: 5.5 * SizeConfig.blockSizeHorizontal,
   height: 1.2,
 );
 
