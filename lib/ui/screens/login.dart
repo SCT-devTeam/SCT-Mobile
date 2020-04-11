@@ -109,7 +109,7 @@ class _LoginState extends State<Login> {
                     'assets/images/sct_logo_colored_squaredWithoutBackgroundAndSubtitle.svg',
                     height: 20.0 * SizeConfig.blockSizeVertical,
                     width: 20.0 * SizeConfig.blockSizeHorizontal),
-                SizedBox(height: 40.0),
+                SizedBox(height: 5.0 * SizeConfig.blockSizeVertical),
                 Text(
                     _wrongCredentials
                         ? 'Mauvais identifiant / mot de passe'
