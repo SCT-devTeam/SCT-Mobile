@@ -1,3 +1,8 @@
+<!-- markdownlint-disable MD012 MD022 MD024 MD041 -->
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/ee6c3e7d7223a3abfe4b/maintainability)](https://codeclimate.com/github/SCT-devTeam/SCT-Mobile/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ee6c3e7d7223a3abfe4b/test_coverage)](https://codeclimate.com/github/SCT-devTeam/SCT-Mobile/test_coverage)
+
 # SCT-Mobile
 Our mobile app
 
