@@ -40,7 +40,7 @@ class CallApi {
     var company = await CallApi().getData('/api/company');
     if (company.statusCode == 200) {
 //      print(compute(parseCompanies, company.body));
-      int cmp_id;
+      var cmp_id;
       var body = json.decode(company.body);
       for (var cmp in body['comp']) {
         cmp_id = cmp['id'];
