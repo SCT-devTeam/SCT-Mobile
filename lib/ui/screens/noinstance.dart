@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 import 'package:sct_mobile/ui/shared/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -47,7 +48,9 @@ class _NoInstanceState extends State<NoInstance> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SvgPicture.asset(
-                    'assets/images/sct_logo_colored_squaredWithoutBackgroundAndSubtitleInverted.svg'),
+                    'assets/images/sct_logo_colored_squaredWithoutBackgroundAndSubtitleInverted.svg',
+                    height: 20.0 * SizeConfig.blockSizeVertical,
+                    width: 20.0 * SizeConfig.blockSizeHorizontal),
                 SizedBox(height: 30.0),
                 Container(
                   child: Text(
@@ -57,8 +60,7 @@ class _NoInstanceState extends State<NoInstance> {
                   ),
                   padding: const EdgeInsets.all(20.0),
                 ),
-                SizedBox(height: 30.0),
-                SizedBox(height: 20.0),
+                SizedBox(height: 2.0 * SizeConfig.blockSizeVertical),
                 TertiaryButton(
                   title: Text("Commander une instance",
                       style: TextStyle(
