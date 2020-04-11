@@ -70,6 +70,7 @@ class _DashboardState extends State<Dashboard> {
 
   getInvoicesTotal(int company_id) {
     final data = {'company_id': company_id};
+    var invoice_total;
     CallApi().postData(data, 'api/customers').then((response) {
       setState(() {
         var res = json.decode(response.body);
@@ -88,7 +89,7 @@ class _DashboardState extends State<Dashboard> {
       _isLoading = true;
     });
 
-    getCustomersTotal(6);
+    getCustomersTotal(CallApi().getCompanyId());
 //
 //    var datainvoice = {'company_id': cmp_id, 'customer_id': 1};
 //    var invoices = await CallApi().postData(datainvoice, '/api/invoice');
@@ -164,7 +165,7 @@ class _DashboardState extends State<Dashboard> {
             StatCard(
                 title: 'Factures',
                 icon: 'invoice_icon_black',
-                value: 20,
+                value: null,
                 color: 0xfffbe48e),
             SizedBox(height: 20.0),
             StatCard(
