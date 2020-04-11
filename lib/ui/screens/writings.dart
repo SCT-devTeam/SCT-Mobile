@@ -23,6 +23,7 @@ class _WritingsPageState extends State<WritingsPage> {
 //    getInvoices(CallApi().getCompanyId(),
 //        CallApi().getCustomerId(CallApi().getCompanyId()));
     getInvoices(6, 1);
+//    updateInvoices();
   }
 
   @override
@@ -63,14 +64,16 @@ class _WritingsPageState extends State<WritingsPage> {
 //    CallApi().getCustomers(company_id);
 //    customer_id = CallApi().getCustomerId(company_id);
 
-    CallApi().getInvoices(company_id, customer_id).then((response) {
-      setState(() {
-        var res = json.decode(response.body);
-        Iterable list = res['invoices'];
-        _invoices = list.map((model) => Invoice.fromJSON(model)).toList();
-        print(_invoices);
-      });
-    });
+    var cstm = CallApi().getCustomersId(company_id);
+    print(cstm);
+//    CallApi().getInvoices(company_id, customer_id).then((response) {
+//      setState(() {
+//        var res = json.decode(response.body);
+//        Iterable list = res['invoices'];
+//        _invoices = list.map((model) => Invoice.fromJSON(model)).toList();
+//        print(_invoices);
+//      });
+//    });
   }
 
   getInvoices(int company_id, int customer_id) {

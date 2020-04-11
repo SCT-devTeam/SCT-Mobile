@@ -89,6 +89,7 @@ class _DashboardState extends State<Dashboard> {
       _isLoading = true;
     });
 
+    print(CallApi().getCompanyId());
     getCustomersTotal(CallApi().getCompanyId());
 //
 //    var datainvoice = {'company_id': cmp_id, 'customer_id': 1};
