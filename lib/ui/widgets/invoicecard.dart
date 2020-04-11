@@ -40,15 +40,20 @@ class InvoiceCard extends StatelessWidget {
                                 style: sctText,
                               ),
                         Center(
-                          child: Text(
-//                            invoice.qualification,
-                            'overdue',
-                            style: sctSubtitleStyleLarge_b,
-                            textAlign: TextAlign.center,
-                          ),
+                          child: invoice.qualification != null
+                              ? Text(
+                                  invoice.qualification,
+                                  style: sctSubtitleStyleLarge_b,
+                                  textAlign: TextAlign.center,
+                                )
+                              : Text(
+                                  "null",
+                                  style: sctSubtitleStyleLarge_b,
+                                  textAlign: TextAlign.center,
+                                ),
                         ),
                         Text(
-                          invoice.customer_id.toString() + "€",
+                          "Facture n°" + invoice.id.toString(),
                           style: sctSubtitleStyleLargeBold_b,
                         ),
                       ],
