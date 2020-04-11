@@ -3,7 +3,7 @@ import 'package:sct_mobile/ui/widgets/personcard.dart';
 
 // Recettes
 
-class Receipts extends StatelessWidget {
+class ReceiptBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -12,11 +12,11 @@ class Receipts extends StatelessWidget {
           padding: EdgeInsets.all(30.0),
           children: <Widget>[
             SizedBox(height: 20.0),
-            PersonCard(
-                title: 'John Doe\n Facture n°',
-                icon: 'avatar_icon_black',
-                value: 0660032567,
-                color: 0xffdcd2fd),
+//            PersonCard(
+//                title: 'John Doe\n Facture n°',
+//                icon: 'avatar_icon_black',
+//                value: 0660032567,
+//                color: 0xffdcd2fd),
           ],
         ),
       ),
