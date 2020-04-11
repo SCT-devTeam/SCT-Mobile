@@ -4,6 +4,8 @@ import 'package:sct_mobile/ui/shared/styles.dart';
 import 'package:sct_mobile/ui/widgets/cardlogo.dart';
 import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 import 'package:sct_mobile/core/data/classes/customer.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:sct_mobile/ui/screens/newcustomer.dart';
 
 class PersonCard extends StatelessWidget {
   final Customer customer;
@@ -14,51 +16,58 @@ class PersonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Card(
-      child: Row(
-        children: <Widget>[
-          SizedBox(height: 10.0, width: 10.0),
-          Container(
-              width: SizeConfig.blockSizeHorizontal * 70,
-              height: 110,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: Center(
-                      child: CardLogo(icon: icon, color: color),
+    return GestureDetector(
+      child: Card(
+        child: Row(
+          children: <Widget>[
+            SizedBox(height: 10.0, width: 10.0),
+            Container(
+                width: SizeConfig.blockSizeHorizontal * 70,
+                height: 110,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: Center(
+                        child: CardLogo(icon: icon, color: color),
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Center(
-                          child: Text(
-                            customer.firstname,
-                            style: sctText,
-                            textAlign: TextAlign.center,
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Center(
+                            child: Text(
+                              customer.firstname + ' ' + customer.lastname,
+                              style: sctText,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                        Text(
-                          customer.status,
-                          style: sctSubtitleStyleMedBold_b,
-                        ),
-                      ],
+                          Text(
+                            customer.status,
+                            style: sctSubtitleStyleMedBold_b,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              )),
-        ],
-      ),
-      elevation: 5.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(25.0),
-          topLeft: Radius.circular(25.0),
-          bottomRight: Radius.circular(25.0),
-          bottomLeft: Radius.circular(25.0),
+                  ],
+                )),
+          ],
         ),
+        elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(25.0),
+            topLeft: Radius.circular(25.0),
+            bottomRight: Radius.circular(25.0),
+            bottomLeft: Radius.circular(25.0),
+          ),
+        ),
+      ),
+      onTap: () => Navigator.of(context).push(
+        CupertinoPageRoute(
+            fullscreenDialog: true,
+            builder: (context) => NewCustomer(title: "Modifier un client")),
       ),
     );
   }
