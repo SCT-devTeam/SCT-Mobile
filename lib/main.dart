@@ -1,53 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:sct_mobile/ui/screens/onboarding_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sct_mobile/ui/screens/home.dart';
+import 'package:sct_mobile/ui/screens/menu.dart';
 
-void main() => runApp(MyApp());
+int initScreen;
+bool _isLoggedIn = false;
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  print('initScreen ${initScreen}');
+
+  initScreen = await prefs.getInt("initScreen");
+  await prefs.setInt("initScreen", 1);
+  runApp(SCT());
+}
+
+class SCT extends StatefulWidget {
+  @override
+  _SCTState createState() => _SCTState();
+}
+
+class _SCTState extends State<SCT> {
+  @override
+  void initState() {
+    _checkIfLoggedIn();
+    super.initState();
+  }
+
+  void _checkIfLoggedIn() async {
+    // check if token is there
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    if (token != null) {
+      setState(() {
+        _isLoggedIn = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+
     return MaterialApp(
-      title: 'Flutter Demo',
+      home: Scaffold(
+        body: _isLoggedIn ? Menu() : Home(),
+      ),
+      debugShowCheckedModeBanner: false,
+      title: 'SCT App',
       theme: ThemeData(
-        primaryColor: Color(0xfff7c91e),
-        accentColor: Color(0xfff7c91e),
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+          // TODO: Create a theme for the app, to easily use different styles
+          ),
+      // Show onboarding screen only once
+      initialRoute: initScreen == 0 || initScreen == null ? "onBoarding" : "",
+//      home: _isLoggedIn ? Home() : Menu(),
+      routes: {
+        'home': (context) => Home(),
+        "onBoarding": (context) => OnboardingScreen(),
+        "menu": (context) => Menu(),
+      },
     );
   }
 }
