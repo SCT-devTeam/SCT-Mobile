@@ -43,6 +43,8 @@ This project use [Flutter](https://github.com/laravel/laravel) to be cross-platf
 
 ## Demo
 
+You can find some screenshots of the application in [docs/demo.md](docs/demo.md)
+
 We have configured 2 instances of SCT² so that you can test before installing it in your home.
 
 One instance connected to the `master` branch (stable | slow ring) available at <https://sct-backend-prod.herokuapp.com>
