@@ -13,11 +13,24 @@ class CustomersPage extends StatefulWidget {
 
 class _CustomersState extends State<CustomersPage> {
   List<Customer> _customers = <Customer>[];
+  int company_id;
+
+  Future<int> getCompanyId() async {
+    var cmp_id = await CallApi().getCompanyId();
+
+    return cmp_id;
+  }
 
   @override
   void initState() {
     super.initState();
-    getCustomers(6);
+
+    getCompanyId().then((response) {
+      setState(() {
+        company_id = response;
+      });
+      getCustomers(company_id);
+    });
   }
 
   @override
@@ -54,17 +67,13 @@ class _CustomersState extends State<CustomersPage> {
       );
 
   getCustomers(int company_id) {
-    final data = {'company_id': company_id};
+    final data = {'id_company': company_id};
     CallApi().postData(data, 'api/customers').then((response) {
       setState(() {
         var res = json.decode(response.body);
         Iterable list = res['cust'];
         _customers = list.map((model) => Customer.fromJSON(model)).toList();
-//        print(_customers);
       });
     });
-//    final Stream<Invoice> stream = await fetchInvoices(6, 1);
-//    print(stream);
-//    stream.listen((Invoice invoice) => setState(() => _invoices.add(invoice)));
   }
 }

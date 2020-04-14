@@ -6,6 +6,7 @@ import 'package:sct_mobile/ui/widgets/invoicecard.dart';
 import 'package:sct_mobile/ui/widgets/personcard.dart';
 import 'package:sct_mobile/core/data/classes/invoice.dart';
 import 'package:sct_mobile/core/data/models/api.dart';
+import 'package:sct_mobile/core/data/classes/customer.dart';
 
 class WritingsPage extends StatefulWidget {
   @override
@@ -14,16 +15,14 @@ class WritingsPage extends StatefulWidget {
 
 class _WritingsPageState extends State<WritingsPage> {
   List<Invoice> _invoices = <Invoice>[];
+  Iterable allInvoices;
   int company_id;
   int customer_id;
 
   @override
   void initState() {
     super.initState();
-//    getInvoices(CallApi().getCompanyId(),
-//        CallApi().getCustomerId(CallApi().getCompanyId()));
-    getInvoices(6, 1);
-//    updateInvoices();
+    updateInvoices();
   }
 
   @override
@@ -59,34 +58,13 @@ class _WritingsPageState extends State<WritingsPage> {
         onWillPop: () async => false,
       );
 
-  updateInvoices() {
-    company_id = CallApi().getCompanyId();
-//    CallApi().getCustomers(company_id);
-//    customer_id = CallApi().getCustomerId(company_id);
-
-    var cstm = CallApi().getCustomersId(company_id);
-    print(cstm);
-//    CallApi().getInvoices(company_id, customer_id).then((response) {
-//      setState(() {
-//        var res = json.decode(response.body);
-//        Iterable list = res['invoices'];
-//        _invoices = list.map((model) => Invoice.fromJSON(model)).toList();
-//        print(_invoices);
-//      });
-//    });
-  }
-
-  getInvoices(int company_id, int customer_id) {
-    final data = {'company_id': company_id, 'customer_id': customer_id};
-    CallApi().postData(data, 'api/invoice').then((response) {
+  void updateInvoices() async {
+    CallApi().getData('api/allInvoice').then((response) {
       setState(() {
         var res = json.decode(response.body);
         Iterable list = res['invoices'];
         _invoices = list.map((model) => Invoice.fromJSON(model)).toList();
       });
     });
-//    final Stream<Invoice> stream = await fetchInvoices(6, 1);
-//    print(stream);
-//    stream.listen((Invoice invoice) => setState(() => _invoices.add(invoice)));
   }
 }

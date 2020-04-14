@@ -4,17 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:sct_mobile/ui/widgets/primarybutton.dart';
 import 'package:sct_mobile/ui/widgets/statcard.dart';
 import 'package:sct_mobile/core/data/models/api.dart';
-import 'package:http/http.dart';
-import 'package:sct_mobile/core/data/models/api.dart';
-import 'package:sct_mobile/ui/screens/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'dart:async';
-import 'package:sct_mobile/core/data/classes/company.dart';
-import 'package:sct_mobile/core/data/models/company_repository.dart';
 import 'package:sct_mobile/core/data/classes/invoice.dart';
 import 'package:sct_mobile/core/data/classes/customer.dart';
-import 'package:sct_mobile/core/data/models/invoice_repository.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -30,18 +24,16 @@ class _DashboardState extends State<Dashboard> {
   int invoicesDisputed;
   int customersTotal = 0;
   int activeProspects;
-  List<Invoice> _invoices = <Invoice>[];
+
   List<Customer> _customers = <Customer>[];
+  List<Invoice> _invoices = <Invoice>[];
 
   void _logout() async {
-//    SharedPreferences prefs = await SharedPreferences.getInstance();
-//    print(prefs.getString('token'));
     var res = await CallApi().getData('api/logout');
     print(res.body);
     if (res.statusCode == 200) {
       print('Logged out success');
       SharedPreferences prefs = await SharedPreferences.getInstance();
-//      prefs.remove('user');
       prefs.remove('token');
       Navigator.of(context).pushNamed('home');
     } else {
@@ -50,17 +42,11 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
-//  Future<List<Company>> parseCompanies(String responseBody) {
-//    final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
-//
-//    return parsed.map<Company>((json) => Company.fromJSON(json)).toList();
-//  }
   getCustomersTotal(int company_id) {
-    final data = {'company_id': company_id};
+    final data = {'id_company': company_id};
     CallApi().postData(data, 'api/customers').then((response) {
       setState(() {
         var res = json.decode(response.body);
-        print(res);
         Iterable list = res['cust'];
         _customers = list.map((model) => Customer.fromJSON(model)).toList();
         customersTotal = _customers.length;
@@ -68,16 +54,13 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
-  getInvoicesTotal(int company_id) {
-    final data = {'company_id': company_id};
-    var invoice_total;
-    CallApi().postData(data, 'api/customers').then((response) {
+  getInvoicesTotal() {
+    CallApi().getData('api/allInvoice').then((response) {
       setState(() {
         var res = json.decode(response.body);
-        print(res);
-        Iterable list = res['cust'];
-        _customers = list.map((model) => Customer.fromJSON(model)).toList();
-        customersTotal = _customers.length;
+        Iterable list = res['invoices'];
+        _invoices = list.map((model) => Invoice.fromJSON(model)).toList();
+        invoicesTotal = _invoices.length;
       });
     });
   }
@@ -89,27 +72,12 @@ class _DashboardState extends State<Dashboard> {
       _isLoading = true;
     });
 
-    print(CallApi().getCompanyId());
-    getCustomersTotal(CallApi().getCompanyId());
-//
-//    var datainvoice = {'company_id': cmp_id, 'customer_id': 1};
-//    var invoices = await CallApi().postData(datainvoice, '/api/invoice');
-//    if (invoices.statusCode == 200) {
-//      var body = json.decode(invoices.body);
-//      print(body);
-//    } else {
-//      print("Error invoice status code: ${invoices.statusCode}");
-//    }
+    var company_id = await CallApi().getCompanyId();
 
-//      var test = body['id'];
-//      print(test);
+    getCustomersTotal(company_id);
 
-//      var nb = getNumberOfInvoices()
-//      print(nb);
-//      var _data {
-//        'company_id' :,
-//        'customer_id' :,
-//      }
+    getInvoicesTotal();
+
     setState(() {
       _refreshButtonState = true;
       _isLoading = false;
@@ -148,6 +116,13 @@ class _DashboardState extends State<Dashboard> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    _updateData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Material(
@@ -166,7 +141,7 @@ class _DashboardState extends State<Dashboard> {
             StatCard(
                 title: 'Factures',
                 icon: 'invoice_icon_black',
-                value: null,
+                value: invoicesTotal,
                 color: 0xfffbe48e),
             SizedBox(height: 20.0),
             StatCard(
