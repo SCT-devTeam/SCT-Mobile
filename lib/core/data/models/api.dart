@@ -3,28 +3,69 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CallApi {
-//  final String _url = 'http://localhost:4000/users/';
-  final String _url = 'https://sct-backend-dev.herokuapp.com/';
+  // WARNING: The app is connected to dev hosting ! Use the same link to use the backoffice to have the same data
+  final String _url = 'https://sct-backend-dev.herokuapp.com/'; // Fixtures or setted on dev database for now. You can change the url by uncomment the other link.
+//  final String _url = 'https://sct-backend-prod.herokuapp.com/';
 
   postData(data, apiUrl) async {
-    var fullUrl = _url + apiUrl + await _getToken();
-    return await http.post(fullUrl,
-        body: jsonEncode(data), headers: _setHeaders());
+    var fullUrl = _url + apiUrl;
+    var token = await _getToken();
+    if (token == null) {
+      return await http.post(fullUrl,
+          body: jsonEncode(data), headers: _setHeaders());
+    } else {
+      return await http.post(fullUrl,
+          body: jsonEncode(data), headers: _setHeadersAuth(token));
+    }
   }
 
   getData(apiUrl) async {
-    var fullUrl = _url + apiUrl + await _getToken();
-    return await http.get(fullUrl, headers: _setHeaders());
+    var fullUrl = _url + apiUrl;
+    var token = await _getToken();
+    return await http.get(fullUrl, headers: _setHeadersAuth(token));
   }
 
+  _setHeadersAuth(String token) => {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token,
+      };
   _setHeaders() => {
         'Content-type': 'application/json',
         'Accept': 'application/json',
       };
 
+  getCompanyId() async {
+    var company = await CallApi().getData('/api/company');
+    if (company.statusCode == 200) {
+      var cmp_id;
+      var body = json.decode(company.body);
+      for (var cmp in body['comp']) {
+        cmp_id = cmp['id'];
+      }
+      return cmp_id;
+    } else {
+      print("Error getting company - Status code: ${company.statusCode}");
+      return null;
+    }
+  }
+
+  getCustomersId(int cmp_id) {
+    var datacustomer = {'company_id': cmp_id};
+    var customers = CallApi().postData(datacustomer, '/api/customers');
+    if (customers.statusCode == 200) {
+      var body = json.decode(customers.body);
+      print(body);
+      print(customers.body);
+    } else {
+      print("Error customers status code: ${customers.statusCode}");
+      return null;
+    }
+  }
+
   _getToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
-    return '?token=$token';
+    return token;
   }
 }
