@@ -5,15 +5,16 @@ class Customer {
   final String meeting_date;
   final String company_name;
   final int siret;
-  final String tva_number;
+  final int tva_number;
   final String firstname;
   final String lastname;
   final int street_number;
+  final String street_name;
   final int zipcode;
   final String city;
-  final String node;
+  final String note;
   final String default_payment_method;
-  final String company;
+  final int company;
 
   Customer.fromJSON(Map<String, dynamic> jsonMap)
       : id = jsonMap['id'],
@@ -26,9 +27,10 @@ class Customer {
         firstname = jsonMap['firstname'],
         lastname = jsonMap['lastname'],
         street_number = jsonMap['street_number'],
+        street_name = jsonMap['street_name'],
         zipcode = jsonMap['zipcode'],
         city = jsonMap['city'],
-        node = jsonMap['node'],
+        note = jsonMap['note'],
         default_payment_method = jsonMap['default_payment_method'],
         company = jsonMap['company'];
 }
