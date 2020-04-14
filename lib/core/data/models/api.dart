@@ -1,14 +1,12 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CallApi {
-//  final String _url = 'http://localhost:4000/users/';
   final String _url = 'https://sct-backend-dev.herokuapp.com/';
+//  final String _url = 'https://sct-backend-prod.herokuapp.com/';
 
   postData(data, apiUrl) async {
-//    var fullUrl = _url + apiUrl + await _getToken();
     var fullUrl = _url + apiUrl;
     var token = await _getToken();
     if (token == null) {
@@ -39,7 +37,6 @@ class CallApi {
   getCompanyId() async {
     var company = await CallApi().getData('/api/company');
     if (company.statusCode == 200) {
-//      print(compute(parseCompanies, company.body));
       var cmp_id;
       var body = json.decode(company.body);
       for (var cmp in body['comp']) {
@@ -52,9 +49,9 @@ class CallApi {
     }
   }
 
-  getCustomersId(int cmp_id) async {
+  getCustomersId(int cmp_id) {
     var datacustomer = {'company_id': cmp_id};
-    var customers = await CallApi().postData(datacustomer, '/api/customers');
+    var customers = CallApi().postData(datacustomer, '/api/customers');
     if (customers.statusCode == 200) {
       var body = json.decode(customers.body);
       print(body);
@@ -65,20 +62,9 @@ class CallApi {
     }
   }
 
-  getInvoices(int company_id, int customer_id) {
-    final data = {'company_id': company_id, 'customer_id': customer_id};
-    CallApi().postData(data, 'api/invoice').then((response) {
-      return response;
-    });
-//    final Stream<Invoice> stream = await fetchInvoices(6, 1);
-//    print(stream);
-//    stream.listen((Invoice invoice) => setState(() => _invoices.add(invoice)));
-  }
-
   _getToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
-//    return '?token=$token';
     return token;
   }
 }
