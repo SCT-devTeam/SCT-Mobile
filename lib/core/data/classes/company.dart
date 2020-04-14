@@ -1,5 +1,3 @@
-import 'dart:convert' show jsonDecode;
-
 class Company {
   final int id;
   final String legal_form;
@@ -55,14 +53,4 @@ class Company {
         default_invoice_notice = jsonMap['default_invoice_notice'],
         default_quote_notice = jsonMap['default_quote_notice'],
         notes = jsonMap['notes'];
-}
-
-class Companies {
-  String result;
-  int count;
-  List<Company> companies;
-
-//  Companies.fromJSON(String jsonStr) {
-//    return json['comp'].map()(value) => new Company.fromJSON(value)).toList(),
-//   }
 }

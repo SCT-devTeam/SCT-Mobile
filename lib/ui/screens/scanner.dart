@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:barcode_scan/barcode_scan.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:sct_mobile/ui/screens/noinstance.dart';
 import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 import 'package:sct_mobile/ui/shared/styles.dart';
