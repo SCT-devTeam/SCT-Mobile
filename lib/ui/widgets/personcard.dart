@@ -43,10 +43,12 @@ class PersonCard extends StatelessWidget {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          Text(
-                            customer.status,
-                            style: sctSubtitleStyleMedBold_b,
-                          ),
+                          customer.status != null
+                              ? Text(customer.status, style: sctText)
+                              : Text(
+                                  "null",
+                                  style: sctText,
+                                ),
                         ],
                       ),
                     ),
