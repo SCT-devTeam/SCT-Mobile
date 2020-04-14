@@ -116,32 +116,33 @@ class _LoginState extends State<Login> {
                         : '',
                     style: TextStyle(color: Colors.red)),
                 SizedBox(height: 10.0),
-                TextFormField(
-                  controller: _urlController,
-                  autovalidate: true,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.url,
-                  focusNode: _urlFocus,
-                  onFieldSubmitted: (term) {
-                    _fieldFocusChange(context, _urlFocus, _mailFocus);
-                  },
-                  scrollPadding: EdgeInsets.all(30.0),
-                  decoration: InputDecoration(
-                    hintText: "URL de l'instance",
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.white, width: 3.0),
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.black, width: 3.0),
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    fillColor: const Color(0xffffffff).withOpacity(0.3),
-                    filled: true,
-                  ),
-                ),
+//                TextFormField(
+//                  enabled: false,
+//                  controller: _urlController,
+//                  autovalidate: true,
+//                  textInputAction: TextInputAction.next,
+//                  keyboardType: TextInputType.url,
+//                  focusNode: _urlFocus,
+//                  onFieldSubmitted: (term) {
+//                    _fieldFocusChange(context, _urlFocus, _mailFocus);
+//                  },
+//                  scrollPadding: EdgeInsets.all(30.0),
+//                  decoration: InputDecoration(
+//                    hintText: "URL de l'instance",
+//                    enabledBorder: OutlineInputBorder(
+//                      borderSide:
+//                          const BorderSide(color: Colors.white, width: 3.0),
+//                      borderRadius: BorderRadius.circular(50),
+//                    ),
+//                    focusedBorder: OutlineInputBorder(
+//                      borderSide:
+//                          const BorderSide(color: Colors.black, width: 3.0),
+//                      borderRadius: BorderRadius.circular(50),
+//                    ),
+//                    fillColor: const Color(0xffffffff).withOpacity(0.3),
+//                    filled: true,
+//                  ),
+//                ),
                 SizedBox(height: 15.0),
                 TextFormField(
                   controller: _mailController,
