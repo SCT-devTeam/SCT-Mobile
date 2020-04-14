@@ -13,8 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- 
 
+&nbsp; <!-- break line -->
+
+
+## [1.1.0a] - 2020-04-14
+
+### Added
+
+- Display statistics on invoices & customers in the dashboard widget
+- Display invoices & customers lists
+
+### Fixed
+
+- Reponsive
 
 &nbsp; <!-- break line -->
 

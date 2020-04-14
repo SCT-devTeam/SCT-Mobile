@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sct_mobile/ui/screens/newcustomer.dart';
+import 'package:sct_mobile/ui/screens/onboarding_screen.dart';
 import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 import 'package:sct_mobile/core/viewmodels/bottomNavigationBar_Model.dart';
-import 'package:sct_mobile/ui/screens/receipts.dart';
-import 'package:sct_mobile/ui/screens/invoices.dart';
+import 'package:sct_mobile/ui/screens/receiptbook.dart';
+import 'package:sct_mobile/ui/screens/writings.dart';
 import 'package:sct_mobile/ui/screens/dashboard.dart';
-import 'package:sct_mobile/ui/screens/clients.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:sct_mobile/ui/screens/customers.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   BottomNavigationWidget({Key key}) : super(key: key);
@@ -15,7 +18,12 @@ class BottomNavigationWidget extends StatefulWidget {
 }
 
 class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
-  final currentTab = [Dashboard(), Clients(), Receipts(), Invoices()];
+  final currentTab = [
+    Dashboard(),
+    CustomersPage(),
+    WritingsPage(),
+    ReceiptBook(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -49,16 +57,21 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: new FloatingActionButton(
-        backgroundColor: Color(0xfff7c91e),
-        onPressed: () {
-          print("Pressed");
-        },
-        child: new Icon(
-          Icons.add,
-          size: 30.0,
-        ),
-      ),
+      floatingActionButton: provider.currentIndex == 1
+          ? FloatingActionButton(
+              backgroundColor: Color(0xfff7c91e),
+              onPressed: () => Navigator.of(context).push(
+                CupertinoPageRoute(
+                    fullscreenDialog: true,
+                    builder: (context) =>
+                        NewCustomer(title: "Ajouter un client")),
+              ),
+              child: new Icon(
+                Icons.add,
+                size: 30.0,
+              ),
+            )
+          : null,
     );
   }
 }

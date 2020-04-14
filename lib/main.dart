@@ -4,6 +4,7 @@ import 'package:sct_mobile/ui/screens/onboarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sct_mobile/ui/screens/home.dart';
 import 'package:sct_mobile/ui/screens/menu.dart';
+import 'package:sct_mobile/ui/shared/sizeConfig.dart';
 
 int initScreen;
 bool _isLoggedIn = false;
@@ -43,10 +44,12 @@ class _SCTState extends State<SCT> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.black, statusBarBrightness: Brightness.light));
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-
     return MaterialApp(
       home: Scaffold(
         body: _isLoggedIn ? Menu() : Home(),

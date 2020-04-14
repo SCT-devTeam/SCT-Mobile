@@ -79,6 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       body: AnimatedBuilder(
         animation: _pageController,
@@ -95,7 +96,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
           child: Container(
-            child: Padding(
+            child: Container(
               padding: EdgeInsets.symmetric(vertical: 50.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -115,7 +116,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 //                    ),
 //                  ),
                   Container(
-                    height: 600.0,
+                    height: 75.0 * SizeConfig.blockSizeVertical,
                     child: PageView(
                       physics: ClampingScrollPhysics(),
                       controller: _pageController,
@@ -126,7 +127,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       },
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.all(40.0),
+                          padding: EdgeInsets.all(5.0) *
+                              SizeConfig.blockSizeVertical,
                           child: Column(
                             children: <Widget>[
                               Text(
@@ -134,19 +136,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 style: sctTitleStyleLarge_b,
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(height: 90.0),
+                              SizedBox(
+                                  height: 6.0 * SizeConfig.blockSizeVertical),
                               Center(
                                 child: SvgPicture.asset(
                                   'assets/images/contactsAroundMan_illustration_colored.svg',
-                                  height: 280.0,
-                                  width: 280.0,
+                                  height: 30.0 * SizeConfig.blockSizeVertical,
+                                  width: 30.0 * SizeConfig.blockSizeHorizontal,
                                 ),
                               ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(40.0),
+                          padding: EdgeInsets.all(5.0) *
+                              SizeConfig.blockSizeVertical,
                           child: Column(
                             children: <Widget>[
                               Text(
@@ -154,31 +158,39 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 style: sctTitleStyleLarge_w,
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(height: 90.0),
+                              SizedBox(
+                                  height: 6.0 * SizeConfig.blockSizeVertical),
                               Center(
                                 child: SvgPicture.asset(
                                   'assets/images/invoicesBehindWoman_illustration_colored.svg',
-                                  height: 280.0,
-                                  width: 280.0,
+                                  height: 30.0 * SizeConfig.blockSizeVertical,
+                                  width: 30.0 * SizeConfig.blockSizeHorizontal,
                                 ),
                               ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(30.0),
+                          padding: EdgeInsets.all(5.0) *
+                              SizeConfig.blockSizeVertical,
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Text(
                                 'Le tout dans un compagnon intelligent!',
                                 style: sctTitleStyleMed_w,
                                 textAlign: TextAlign.center,
                               ),
+                              SizedBox(
+                                  height: 3.0 * SizeConfig.blockSizeVertical),
                               Column(
                                 children: <Widget>[
-                                  SizedBox(height: 100.0),
+                                  SizedBox(
+                                      height:
+                                          6.0 * SizeConfig.blockSizeVertical),
                                   Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: <Widget>[
                                       Icon(
                                         Icons.check,
@@ -249,13 +261,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(80.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: _buildPageIndicator(),
-                    ),
+                  Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: _buildPageIndicator(),
+                      ),
+                      SizedBox(height: 3 * SizeConfig.blockSizeVertical),
+                    ],
                   ),
+//                  Container(
+//                      child: Row(
+//                    mainAxisAlignment: MainAxisAlignment.center,
+//                    children: _buildPageIndicator(),
+//                  )),
                   _currentPage != _numPages - 1
                       ? Expanded(
                           child: Align(
@@ -273,7 +292,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 children: <Widget>[
                                   // TODO: Make next button change color to white on second page
                                   Text(
-                                    'Next',
+                                    'Suivant',
                                     style: TextStyle(
                                       color: Color(0xff1a1a1a),
                                       fontSize: 22.0,
@@ -299,7 +318,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       bottomSheet: _currentPage == _numPages - 1
           ? Container(
-              height: 90.0,
+              height: 10.0 * SizeConfig.blockSizeVertical,
               width: double.infinity,
               color: Colors.white,
               child: GestureDetector(
@@ -309,12 +328,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
                 child: Center(
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 15.0),
+                    padding: EdgeInsets.only(bottom: 2.0) *
+                        SizeConfig.safeBlockVertical,
                     child: Text(
                       "J'ai compris",
                       style: TextStyle(
                         color: Color(0xff4f1ef7),
-                        fontSize: 20.0,
+                        fontSize: 5.0 * SizeConfig.safeBlockHorizontal,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
