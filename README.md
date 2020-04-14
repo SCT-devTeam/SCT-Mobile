@@ -23,7 +23,9 @@
 
 SCT² is an open source project whose goal is for everyone to have a simple, fast and automated software to manage their business.
 
-⚠ The project is still under development. ⚠
+<span style="color:red; font-weight: bold">⚠ The project is still under development. ⚠</span>
+**The app is connected to dev hosting ! Use the same link to use the backoffice to have the same data**
+_You can change that in the file [lib/core/data/models/api.dart (line 6 to 8)](lib/core/data/models/api.dart)_
 
 **This cross-platform mobile application need an [instance of the backend](https://github.com/SCT-devTeam/SCT-Backend/) to work.**
 

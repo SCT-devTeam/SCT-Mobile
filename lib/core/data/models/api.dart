@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CallApi {
-  final String _url = 'https://sct-backend-dev.herokuapp.com/';
+  // WARNING: The app is connected to dev hosting ! Use the same link to use the backoffice to have the same data
+  final String _url = 'https://sct-backend-dev.herokuapp.com/'; // Fixtures or setted on dev database for now. You can change the url by uncomment the other link.
 //  final String _url = 'https://sct-backend-prod.herokuapp.com/';
 
   postData(data, apiUrl) async {
