@@ -51,19 +51,6 @@ class CallApi {
     }
   }
 
-  getCustomersId(int cmp_id) {
-    var datacustomer = {'company_id': cmp_id};
-    var customers = CallApi().postData(datacustomer, '/api/customers');
-    if (customers.statusCode == 200) {
-      var body = json.decode(customers.body);
-      print(body);
-      print(customers.body);
-    } else {
-      print("Error customers status code: ${customers.statusCode}");
-      return null;
-    }
-  }
-
   _getToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
