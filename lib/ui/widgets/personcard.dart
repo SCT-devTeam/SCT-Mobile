@@ -16,6 +16,7 @@ class PersonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return GestureDetector(
       child: Card(
         child: Row(
@@ -66,11 +67,11 @@ class PersonCard extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () => Navigator.of(context).push(
-        CupertinoPageRoute(
-            fullscreenDialog: true,
-            builder: (context) => NewCustomer(title: "Modifier un client")),
-      ),
+//      onTap: () => Navigator.of(context).push(
+//        CupertinoPageRoute(
+//            fullscreenDialog: true,
+//            builder: (context) => NewCustomer(title: "Modifier un client")),
+//      ),
     );
   }
 }

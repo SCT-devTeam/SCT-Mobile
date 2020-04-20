@@ -3,6 +3,8 @@ import 'package:sct_mobile/core/data/models/customer_repository.dart';
 import 'package:sct_mobile/ui/widgets/personcard.dart';
 import 'package:sct_mobile/core/data/classes/customer.dart';
 import 'package:sct_mobile/ui/widgets/secondaryinput.dart';
+import 'package:sct_mobile/core/data/models/api.dart';
+import 'package:sct_mobile/ui/screens/customers.dart';
 
 class NewCustomer extends StatefulWidget {
   final String title;
@@ -15,21 +17,56 @@ class _NewCustomerState extends State<NewCustomer> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   var _statusController = TextEditingController();
   var _typeController = TextEditingController();
-  var _nameController = TextEditingController();
+  var _firstnameController = TextEditingController();
+  var _lastnameController = TextEditingController();
   var _adresseController = TextEditingController();
+  var _notesController = TextEditingController();
 
   final FocusNode _statusFocus = FocusNode();
   final FocusNode _typeFocus = FocusNode();
-  final FocusNode _nameFocus = FocusNode();
+  final FocusNode _lastnameFocus = FocusNode();
+  final FocusNode _firstnameFocus = FocusNode();
   final FocusNode _adresseFocus = FocusNode();
+  final FocusNode _notesFocus = FocusNode();
 
-  List<String> _types = ['Prospect', 'Actif', 'Archivé', 'Supprimé'];
-  String _selectedLocation;
+  List<String> _types = ['individual', 'professional'];
+  List<String> _status = ['prospect', 'active', 'archived', 'deleted'];
+  String _selectedType;
+  String _selectedStatus;
 
   _fieldFocusChange(
       BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
+  }
+
+  submit() {
+    var data = {
+      'customer_type': _selectedType.trim(),
+      'status': _selectedStatus.trim(),
+      'meeting_date': null,
+      'company_name': null,
+      'siret': null,
+      'tva_number': null,
+      'firstname': _firstnameController.text.trim(),
+      'lastname': _lastnameController.text.trim(),
+      'street_number': null,
+      'street_name': null,
+      'zipcode': null,
+      'city': null,
+      'note': _notesController.text.trim(),
+      'default_payment_method': null,
+      'company': null
+    };
+    CallApi().postData(data, 'api/createCustomer').then((response) {
+      setState(() {
+        if (response.statusCode == 200) {
+          Navigator.of(context).pop();
+        } else {
+          print("Error from API code: ${response.statusCode}");
+        }
+      });
+    });
   }
 
   @override
@@ -48,7 +85,7 @@ class _NewCustomerState extends State<NewCustomer> {
               IconButton(
                 icon: const Icon(Icons.check),
                 tooltip: '',
-                onPressed: () {},
+                onPressed: submit,
               ),
               SizedBox(width: 15.0),
             ],
@@ -61,42 +98,58 @@ class _NewCustomerState extends State<NewCustomer> {
 //              mainAxisAlignment: MainAxisAlignment.,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 10.0),
-                  CircleAvatar(
-                    backgroundColor: Colors.brown.shade800,
-                    child: Text('Avatar'),
-                    radius: 100.0,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      DropdownButton(
+                        hint: Text(
+                            'Type du client'), // Not necessary for Option 1
+                        value: _selectedType,
+                        onChanged: (newValue) {
+                          setState(() {
+                            _selectedType = newValue;
+                          });
+                        },
+                        items: _types.map((location) {
+                          return DropdownMenuItem(
+                            child: new Text(location),
+                            value: location,
+                          );
+                        }).toList(),
+                      ),
+                      SizedBox(width: 20.0),
+                      DropdownButton(
+                        hint: Text(
+                            'Status du client'), // Not necessary for Option 1
+                        value: _selectedStatus,
+                        onChanged: (newValue) {
+                          setState(() {
+                            _selectedStatus = newValue;
+                          });
+                        },
+                        items: _status.map((location) {
+                          return DropdownMenuItem(
+                            child: new Text(location),
+                            value: location,
+                          );
+                        }).toList(),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 20.0),
-                  DropdownButton(
-                    hint:
-                        Text('Status du client'), // Not necessary for Option 1
-                    value: _selectedLocation,
-                    onChanged: (newValue) {
-                      setState(() {
-                        _selectedLocation = newValue;
-                      });
-                    },
-                    items: _types.map((location) {
-                      return DropdownMenuItem(
-                        child: new Text(location),
-                        value: location,
-                      );
-                    }).toList(),
-                  ),
-                  SizedBox(height: 20.0),
+                  SizedBox(height: 15.0),
                   TextFormField(
-                    controller: _typeController,
-                    autovalidate: true,
+                    controller: _firstnameController,
                     textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.url,
-                    focusNode: _typeFocus,
+                    keyboardType: TextInputType.emailAddress,
+//                    validator: this._validateEmail,
+                    focusNode: _firstnameFocus,
                     onFieldSubmitted: (term) {
-                      _fieldFocusChange(context, _typeFocus, _nameFocus);
+                      _fieldFocusChange(
+                          context, _firstnameFocus, _lastnameFocus);
                     },
                     scrollPadding: EdgeInsets.all(30.0),
                     decoration: InputDecoration(
-                      hintText: "Type de client",
+                      hintText: "Prénom du client",
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
                             color: Color(0xff505050), width: 3.0),
@@ -113,13 +166,13 @@ class _NewCustomerState extends State<NewCustomer> {
                   ),
                   SizedBox(height: 15.0),
                   TextFormField(
-                    controller: _nameController,
+                    controller: _lastnameController,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
 //                    validator: this._validateEmail,
-                    focusNode: _nameFocus,
+                    focusNode: _lastnameFocus,
                     onFieldSubmitted: (term) {
-                      _fieldFocusChange(context, _nameFocus, _adresseFocus);
+                      _fieldFocusChange(context, _lastnameFocus, _notesFocus);
                     },
                     scrollPadding: EdgeInsets.all(30.0),
                     decoration: InputDecoration(
@@ -138,22 +191,49 @@ class _NewCustomerState extends State<NewCustomer> {
                       filled: true,
                     ),
                   ),
+//                  SizedBox(height: 15.0),
+//                  TextFormField(
+//                    controller: _adresseController,
+//                    textInputAction: TextInputAction.done,
+//                    obscureText: true,
+//                    focusNode: _adresseFocus,
+//                    onFieldSubmitted: (term) {
+//                      _fieldFocusChange(context, _adresseFocus, _notesFocus);
+//                    },
+//                    keyboardType: TextInputType.visiblePassword,
+////                    validator: this._validatePassword,
+//                    scrollPadding: EdgeInsets.all(30.0),
+//                    decoration: InputDecoration(
+//                      hintText: "Adresse du client",
+//                      enabledBorder: OutlineInputBorder(
+//                        borderSide: const BorderSide(
+//                            color: Color(0xff505050), width: 3.0),
+//                        borderRadius: BorderRadius.circular(50),
+//                      ),
+//                      focusedBorder: OutlineInputBorder(
+//                        borderSide: const BorderSide(
+//                            color: Color(0xfff7c91e), width: 3.0),
+//                        borderRadius: BorderRadius.circular(50),
+//                      ),
+//                      fillColor: const Color(0xffb8bdc4).withOpacity(0.3),
+//                      filled: true,
+//                    ),
+//                  ),
                   SizedBox(height: 15.0),
                   TextFormField(
-                    controller: _adresseController,
+                    controller: _notesController,
                     textInputAction: TextInputAction.done,
-                    obscureText: true,
-                    focusNode: _adresseFocus,
+                    focusNode: _notesFocus,
                     onFieldSubmitted: (value) {
-                      _adresseFocus.unfocus();
+                      _notesFocus.unfocus();
 //                      submit();
 //                      _calculator();
                     },
-                    keyboardType: TextInputType.visiblePassword,
+                    keyboardType: TextInputType.text,
 //                    validator: this._validatePassword,
                     scrollPadding: EdgeInsets.all(30.0),
                     decoration: InputDecoration(
-                      hintText: "Adresse du client",
+                      hintText: "Notes",
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
                             color: Color(0xff505050), width: 3.0),
