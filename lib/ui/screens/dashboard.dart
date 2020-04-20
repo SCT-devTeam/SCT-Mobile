@@ -47,7 +47,7 @@ class _DashboardState extends State<Dashboard> {
     CallApi().postData(data, 'api/customers').then((response) {
       setState(() {
         var res = json.decode(response.body);
-        Iterable list = res['cust'];
+        Iterable list = res;
         _customers = list.map((model) => Customer.fromJSON(model)).toList();
         customersTotal = _customers.length;
       });
@@ -58,7 +58,7 @@ class _DashboardState extends State<Dashboard> {
     CallApi().getData('api/allInvoice').then((response) {
       setState(() {
         var res = json.decode(response.body);
-        Iterable list = res['invoices'];
+        Iterable list = res;
         _invoices = list.map((model) => Invoice.fromJSON(model)).toList();
         invoicesTotal = _invoices.length;
       });

@@ -254,8 +254,7 @@ class _LoginState extends State<Login> {
         print('Login success');
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('token', body['token']);
-        print(prefs.getString('token'));
-//      prefs.setString('user', json.encode(body['user']));
+//        print(prefs.getString('token'));
         Navigator.of(context).pushNamed('menu');
       } else {
         print("Error: No token found");

@@ -62,7 +62,7 @@ class _WritingsPageState extends State<WritingsPage> {
     CallApi().getData('api/allInvoice').then((response) {
       setState(() {
         var res = json.decode(response.body);
-        Iterable list = res['invoices'];
+        Iterable list = res;
         _invoices = list.map((model) => Invoice.fromJSON(model)).toList();
       });
     });
