@@ -37,11 +37,11 @@ class CallApi {
       };
 
   getCompanyId() async {
-    var company = await CallApi().getData('/api/company');
+    var company = await CallApi().getData('api/company');
     if (company.statusCode == 200) {
       var cmp_id;
       var body = json.decode(company.body);
-      for (var cmp in body['comp']) {
+      for (var cmp in body) {
         cmp_id = cmp['id'];
       }
       return cmp_id;
